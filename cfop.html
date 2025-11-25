@@ -6,57 +6,6 @@
     <title>CFOP Method - Charles Lin</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* 確保與 OH 頁面有一樣的卡片樣式 */
-        .oll-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .oll-card {
-            background: white;
-            padding: 10px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            text-align: center;
-            border: 1px solid #eee;
-            position: relative;
-            transition: transform 0.2s ease, box-shadow 0.2s ease; 
-        }
-
-        .oll-card:hover {
-            transform: scale(1.5);
-            z-index: 100;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-            cursor: pointer;
-            transition-delay: 0.5s; 
-        }
-
-        .oll-card h4 {
-            margin: 0 0 5px 0;
-            color: #555;
-            font-size: 0.85rem;
-        }
-
-        .oll-card img {
-            width: 80px;  
-            height: 80px;
-            object-fit: contain;
-            margin-bottom: 5px;
-        }
-
-        .oll-card p {
-            font-size: 0.75rem;
-            color: #007BFF;
-            font-weight: 700;
-            margin: 0;
-            line-height: 1.3;
-            word-wrap: break-word;
-            background: white;
-        }
-    </style>
 </head>
 <body>
     <header class="hero-header">
@@ -90,151 +39,96 @@
                 </div>
 
                 <div class="icon-nav-grid">
-                    <a href="#step-cross" class="nav-icon-box">
-                        <div class="nav-icon-circle">C</div>
-                        <span class="nav-label">Cross</span>
-                    </a>
-                    <a href="#step-f2l" class="nav-icon-box">
-                        <div class="nav-icon-circle">F</div>
-                        <span class="nav-label">F2L</span>
-                    </a>
-                    <a href="#step-oll" class="nav-icon-box">
-                        <div class="nav-icon-circle">O</div>
-                        <span class="nav-label">OLL</span>
-                    </a>
-                    <a href="#step-pll" class="nav-icon-box">
-                        <div class="nav-icon-circle">P</div>
-                        <span class="nav-label">PLL</span>
-                    </a>
+                    <a href="#step-cross" class="nav-icon-box"><div class="nav-icon-circle">C</div><span class="nav-label">Cross</span></a>
+                    <a href="#step-f2l" class="nav-icon-box"><div class="nav-icon-circle">F</div><span class="nav-label">F2L</span></a>
+                    <a href="#step-oll" class="nav-icon-box"><div class="nav-icon-circle">O</div><span class="nav-label">OLL</span></a>
+                    <a href="#step-pll" class="nav-icon-box"><div class="nav-icon-circle">P</div><span class="nav-label">PLL</span></a>
                 </div>
             </div>
         </section>
 
         <section class="section-gray">
             <div class="container">
-                
                 <div id="step-cross" class="section-header text-center" style="margin-top: 20px;">
-                    <h2>Cross</h2>
-                    <div class="divider"></div>
-                    <p>Build the cross directly on the bottom (D-face) to save rotation time.</p>
+                    <h2>Cross</h2><div class="divider"></div><p>Build the cross directly on the bottom.</p>
                 </div>
                 <div class="step-detail-view">
                     <div class="step-card step-detail-card">
                         <div class="step-number">C</div>
                         <div class="step-content">
                             <h3>The White Cross</h3>
-                            <p>Advanced solvers plan the entire cross during inspection (15s). Try to solve it in 8 moves or less.</p>
+                            <p>Plan the entire cross during inspection.</p>
                             <img src="cross_cube.png" alt="Cross" style="width: 200px; display:block; margin: 20px auto;">
                         </div>
                     </div>
                 </div>
 
                 <div id="step-f2l" class="section-header text-center" style="margin-top: 60px;">
-                    <h2>F2L (First 2 Layers)</h2>
-                    <div class="divider"></div>
-                    <p>Solving corners and edges simultaneously (41 Basic Cases).</p>
+                    <h2>F2L (First 2 Layers)</h2><div class="divider"></div><p>Solving corners and edges simultaneously.</p>
                 </div>
                 <div class="step-detail-view">
                     <div class="step-card step-detail-card">
                         <div class="step-number">F</div>
                         <div class="step-content">
                             <h3>F2L Pairing</h3>
-                            <p>Instead of solving corners and edges separately, pair them up and insert them into slots simultaneously. Look ahead is key here.</p>
-                            
+                            <p>Solve pairs instead of individual pieces. (41 Basic Cases)</p>
                             <img src="f2l_basic.png" alt="F2L" onerror="this.src='https://via.placeholder.com/200?text=F2L+Image'" style="width: 200px; display:block; margin: 20px auto;">
                         </div>
                     </div>
                 </div>
 
                 <div id="step-oll" class="section-header text-center" style="margin-top: 60px;">
-                    <h2>OLL (Orientation)</h2>
-                    <div class="divider"></div>
-                    <p>Orienting all pieces on the top layer (57 Algorithms).</p>
+                    <h2>OLL (Orientation)</h2><div class="divider"></div><p>Orienting the top layer (57 Algorithms).</p>
                 </div>
                 <div id="oll-container" class="oll-grid"></div>
 
                 <div id="step-pll" class="section-header text-center" style="margin-top: 60px;">
-                    <h2>PLL (Permutation)</h2>
-                    <div class="divider"></div>
-                    <p>Permuting pieces to solve the cube (21 Algorithms).</p>
+                    <h2>PLL (Permutation)</h2><div class="divider"></div><p>Permuting the last layer (21 Algorithms).</p>
                 </div>
                 <div id="pll-container" class="oll-grid"></div>
-
             </div>
         </section>
     </main>
 
     <footer>
-        <div class="container">
-            <p>© 2025 Charles Lin. WCA ID: 2020LINC05</p>
-        </div>
+        <div class="container"><p>© 2025 Charles Lin. WCA ID: 2020LINC05</p></div>
     </footer>
 
     <script>
-        // 1. OLL Data (Standard 2H Algs)
-        // 圖片使用 .jpg (您之前上傳的格式)
+        // OLL Data (Standard 2H - Images are .jpg)
         const ollData = [
-            { id: 1, alg: "R U2 R2 F R F' U2 R' F R F'" },
-            { id: 2, alg: "r U r' U2 r U2 R' U2 R U' r'" },
-            { id: 3, alg: "f R U R' U' f' U' F R U R' U' F'" },
-            { id: 4, alg: "f R U R' U' f' U F R U R' U' F'" },
-            { id: 5, alg: "l' U2 L U L' U l" },
-            { id: 6, alg: "r U2 R' U' R U' r'" },
-            { id: 7, alg: "r U R' U R U2 r'" },
-            { id: 8, alg: "l' U' L U' L' U2 l" },
-            { id: 9, alg: "R U R' U' R' F R2 U R' U' F'" },
-            { id: 10, alg: "R U R' U R' F R F' R U2 R'" },
-            { id: 11, alg: "r U R' U R' F R F' R U2 r'" },
-            { id: 12, alg: "M' R' U' R U' R' U2 R U' M" },
-            { id: 13, alg: "F U R U' R2 F' R U R U' R'" },
-            { id: 14, alg: "R' U' R U' R' U2 R" },
-            { id: 15, alg: "l' U' l L' U' L U l' U l" },
-            { id: 16, alg: "r U r' R U R' U' r U' r'" },
-            { id: 17, alg: "R U R' U R' F R F' U2 R' F R F'" },
-            { id: 18, alg: "r U R' U R U2 r2 U' R U' R' U2 r" },
-            { id: 19, alg: "r' R U R U R' U' M' R' F R F'" },
-            { id: 20, alg: "r U R' U' M2 U R U' R' U' M'" },
-            { id: 21, alg: "R U2 R' U' R U R' U' R U' R'" },
-            { id: 22, alg: "R U2 R2 U' R2 U' R2 U2 R" },
-            { id: 23, alg: "R2 D R' U2 R D' R' U2 R'" },
-            { id: 24, alg: "r U R' U' r' F R F'" },
-            { id: 25, alg: "F' r U R' U' r' F R" },
-            { id: 26, alg: "R' U' R U' R' U2 R" },
-            { id: 27, alg: "R U R' U R U2 R'" },
-            { id: 28, alg: "r U R' U' r' R U R U' R'" },
-            { id: 29, alg: "R U R' U' R U' R' F' U' F R U R'" },
-            { id: 30, alg: "F R' F R2 U' R' U' R U R' F2" },
-            { id: 31, alg: "R' U' F U R U' R' F' R" },
-            { id: 32, alg: "R U B' U' R' U R B R'" },
-            { id: 33, alg: "R U R' U' R' F R F'" },
-            { id: 34, alg: "R U R2 U' R' F R U R U' F'" },
-            { id: 35, alg: "R U2 R2 F R F' R U2 R'" },
-            { id: 36, alg: "L' U' L U' L' U L U L F' L' F" },
-            { id: 37, alg: "F R U' R' U' R U R' F'" },
-            { id: 38, alg: "R U R' U R U' R' U' R' F R F'" },
-            { id: 39, alg: "L F' L' U' L U F U' L'" },
-            { id: 40, alg: "R' F R U R' U' F' U R" },
-            { id: 41, alg: "R U R' U R U2 R' F R U R' U' F'" },
-            { id: 42, alg: "R' U' R U' R' U2 R F R U R' U' F'" },
-            { id: 43, alg: "f' L' U' L U f" },
-            { id: 44, alg: "f R U R' U' f'" },
-            { id: 45, alg: "F R U R' U' F'" },
-            { id: 46, alg: "R' U' R' F R F' U R" },
-            { id: 47, alg: "F' L' U' L U L' U' L U F" },
-            { id: 48, alg: "F R U R' U' R U R' U' F'" },
-            { id: 49, alg: "r U' r2 U r2 U r2 U' r" },
-            { id: 50, alg: "r' U r2 U' r2 U' r2 U r'" },
-            { id: 51, alg: "f R U R' U' R U R' U' f'" },
-            { id: 52, alg: "R' U' R U' R' U F' U F R" },
-            { id: 53, alg: "r' U' r R' U' R U r' U r" },
-            { id: 54, alg: "r U R' U R U' R' U R U2 r'" },
-            { id: 55, alg: "R' F R U R U' R2 F' R2 U' R' U R U R'" },
-            { id: 56, alg: "r' U r U R U' R' r U' r'" },
+            { id: 1, alg: "R U2 R2 F R F' U2 R' F R F'" }, { id: 2, alg: "r U r' U2 r U2 R' U2 R U' r'" },
+            { id: 3, alg: "f R U R' U' f' U' F R U R' U' F'" }, { id: 4, alg: "f R U R' U' f' U F R U R' U' F'" },
+            { id: 5, alg: "l' U2 L U L' U l" }, { id: 6, alg: "r U2 R' U' R U' r'" },
+            { id: 7, alg: "r U R' U R U2 r'" }, { id: 8, alg: "l' U' L U' L' U2 l" },
+            { id: 9, alg: "R U R' U' R' F R2 U R' U' F'" }, { id: 10, alg: "R U R' U R' F R F' R U2 R'" },
+            { id: 11, alg: "r U R' U R' F R F' R U2 r'" }, { id: 12, alg: "M' R' U' R U' R' U2 R U' M" },
+            { id: 13, alg: "F U R U' R2 F' R U R U' R'" }, { id: 14, alg: "R' U' R U' R' U2 R" },
+            { id: 15, alg: "l' U' l L' U' L U l' U l" }, { id: 16, alg: "r U r' R U R' U' r U' r'" },
+            { id: 17, alg: "R U R' U R' F R F' U2 R' F R F'" }, { id: 18, alg: "r U R' U R U2 r2 U' R U' R' U2 r" },
+            { id: 19, alg: "r' R U R U R' U' M' R' F R F'" }, { id: 20, alg: "r U R' U' M2 U R U' R' U' M'" },
+            { id: 21, alg: "R U2 R' U' R U R' U' R U' R'" }, { id: 22, alg: "R U2 R2 U' R2 U' R2 U2 R" },
+            { id: 23, alg: "R2 D R' U2 R D' R' U2 R'" }, { id: 24, alg: "r U R' U' r' F R F'" },
+            { id: 25, alg: "F' r U R' U' r' F R" }, { id: 26, alg: "R' U' R U' R' U2 R" },
+            { id: 27, alg: "R U R' U R U2 R'" }, { id: 28, alg: "r U R' U' r' R U R U' R'" },
+            { id: 29, alg: "R U R' U' R U' R' F' U' F R U R'" }, { id: 30, alg: "F R' F R2 U' R' U' R U R' F2" },
+            { id: 31, alg: "R' U' F U R U' R' F' R" }, { id: 32, alg: "R U B' U' R' U R B R'" },
+            { id: 33, alg: "R U R' U' R' F R F'" }, { id: 34, alg: "R U R2 U' R' F R U R U' F'" },
+            { id: 35, alg: "R U2 R2 F R F' R U2 R'" }, { id: 36, alg: "L' U' L U' L' U L U L F' L' F" },
+            { id: 37, alg: "F R U' R' U' R U R' F'" }, { id: 38, alg: "R U R' U R U' R' U' R' F R F'" },
+            { id: 39, alg: "L F' L' U' L U F U' L'" }, { id: 40, alg: "R' F R U R' U' F' U R" },
+            { id: 41, alg: "R U R' U R U2 R' F R U R' U' F'" }, { id: 42, alg: "R' U' R U' R' U2 R F R U R' U' F'" },
+            { id: 43, alg: "f' L' U' L U f" }, { id: 44, alg: "f R U R' U' f'" },
+            { id: 45, alg: "F R U R' U' F'" }, { id: 46, alg: "R' U' R' F R F' U R" },
+            { id: 47, alg: "F' L' U' L U L' U' L U F" }, { id: 48, alg: "F R U R' U' R U R' U' F'" },
+            { id: 49, alg: "r U' r2 U r2 U r2 U' r" }, { id: 50, alg: "r' U r2 U' r2 U' r2 U r'" },
+            { id: 51, alg: "f R U R' U' R U R' U' f'" }, { id: 52, alg: "R' U' R U' R' U F' U F R" },
+            { id: 53, alg: "r' U' r R' U' R U r' U r" }, { id: 54, alg: "r U R' U R U' R' U R U2 r'" },
+            { id: 55, alg: "R' F R U R U' R2 F' R2 U' R' U R U R'" }, { id: 56, alg: "r' U r U R U' R' r U' r'" },
             { id: 57, alg: "R U R' U' M' U R U' r'" }
         ];
 
-        // 2. PLL Data (Standard 2H Algs - With M moves for H/Z/U)
-        // 圖片使用 .jpg
+        // PLL Data (Standard 2H)
         const pllData = [
             { id: "aa", name: "Aa Perm", alg: "x R' U R' D2 R U' R' D2 R2" },
             { id: "ab", name: "Ab Perm", alg: "x R2 D2 R U R' D2 R U' R" },
@@ -253,38 +147,27 @@
             { id: "nb", name: "Nb Perm", alg: "R' U R U' R' F' U' F R U R' F R' F' R U' R" },
             { id: "v", name: "V Perm", alg: "R' U R' U' R D' R' D R' U D' R2 U' R2 D R2" },
             { id: "y", name: "Y Perm", alg: "F R U' R' U' R U R' F' R U R' U' R' F R F'" },
-            // Standard 2H PLLs (M slices)
             { id: "h", name: "H Perm", alg: "M2 U M2 U2 M2 U M2" },
             { id: "ua", name: "Ua Perm", alg: "M2 U M U2 M' U M2" },
             { id: "ub", name: "Ub Perm", alg: "M2 U' M U2 M' U' M2" },
             { id: "z", name: "Z Perm", alg: "M2 U M2 U M' U2 M2 U2 M'" }
         ];
 
-        // --- Render OLL (JPG) ---
         const ollContainer = document.getElementById('oll-container');
         ollData.forEach(item => {
             const card = document.createElement('div');
             card.className = 'oll-card';
             const imgSrc = `oll${item.id}.jpg`; 
-            card.innerHTML = `
-                <h4>OLL ${item.id}</h4>
-                <img src="${imgSrc}" alt="OLL ${item.id}" onerror="this.src='https://via.placeholder.com/70?text=IMG'">
-                <p>${item.alg}</p>
-            `;
+            card.innerHTML = `<h4>OLL ${item.id}</h4><img src="${imgSrc}" alt="OLL" onerror="this.src='https://via.placeholder.com/70'"><p>${item.alg}</p>`;
             ollContainer.appendChild(card);
         });
 
-        // --- Render PLL (JPG) ---
         const pllContainer = document.getElementById('pll-container');
         pllData.forEach(item => {
             const card = document.createElement('div');
             card.className = 'oll-card'; 
             const imgSrc = `pll_${item.id}.jpg`; 
-            card.innerHTML = `
-                <h4>${item.name}</h4>
-                <img src="${imgSrc}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/70?text=IMG'">
-                <p>${item.alg}</p>
-            `;
+            card.innerHTML = `<h4>${item.name}</h4><img src="${imgSrc}" alt="PLL" onerror="this.src='https://via.placeholder.com/70'"><p>${item.alg}</p>`;
             pllContainer.appendChild(card);
         });
     </script>
