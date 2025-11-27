@@ -6,6 +6,119 @@
     <title>LBL Method - Charles Lin</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* --- OLL/LBL 卡片樣式 --- */
+        .oll-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        /* 寬版卡片 (第二層) */
+        .oll-card.wide-card {
+            grid-column: span 2;
+        }
+        @media (max-width: 600px) {
+            .oll-card.wide-card { grid-column: span 1; }
+        }
+
+        .oll-card {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            text-align: center;
+            border: 1px solid #eee;
+            position: relative;
+            transition: transform 0.2s ease, box-shadow 0.2s ease; 
+        }
+
+        .oll-card:hover {
+            transform: scale(1.02); 
+            z-index: 100;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition-delay: 0.2s; 
+        }
+
+        .oll-card h4 {
+            margin: 0 0 8px 0;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        /* 單張辨識大圖樣式 */
+        .oll-card img.recognition-img {
+            width: 80px;  
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+
+        /* 一般單張大圖 */
+        .oll-card img.main-img {
+            width: 90px;  
+            height: 90px;
+            object-fit: contain;
+            margin-bottom: 5px;
+        }
+
+        .oll-card p {
+            font-size: 0.8rem;
+            color: #007BFF;
+            font-weight: 700;
+            margin: 5px 0 0 0;
+            line-height: 1.4;
+            word-wrap: break-word;
+            background: white;
+        }
+
+        /* --- 四步分解圖樣式 (Grid) --- */
+        .step-breakdown {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+            margin-bottom: 5px;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+        
+        /* 第一層角塊維持 2x2 排列 */
+        .step-breakdown.two-by-two {
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        .step-img-wrapper { position: relative; }
+        .step-img-wrapper img { width: 100%; border-radius: 4px; border: 1px solid #eee; display: block; }
+
+        /* --- 數字標籤樣式 (黑色字、無底色) --- */
+        .step-badge {
+            position: absolute;
+            top: 2px; 
+            left: 3px;
+            background-color: transparent;
+            color: #000000; 
+            font-size: 0.55rem; 
+            font-weight: 800;
+            z-index: 5; 
+            pointer-events: none;
+            text-shadow: 0px 0px 2px rgba(255, 255, 255, 0.9); 
+        }
+
+        /* --- 轉面提示樣式 --- */
+        .rotation-indicator {
+            background-color: #fff3cd;
+            color: #856404;
+            font-size: 0.75rem;
+            padding: 5px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-weight: bold;
+            border: 1px dashed #ffeeba;
+        }
+    </style>
 </head>
 <body>
     <header class="hero-header">
@@ -39,26 +152,11 @@
                 </div>
 
                 <div class="icon-nav-grid">
-                    <a href="#step-cross" class="nav-icon-box">
-                        <div class="nav-icon-circle">1</div>
-                        <span class="nav-label">Cross</span>
-                    </a>
-                    <a href="#step-layer1" class="nav-icon-box">
-                        <div class="nav-icon-circle">2</div>
-                        <span class="nav-label">Layer 1</span>
-                    </a>
-                    <a href="#step-layer2" class="nav-icon-box">
-                        <div class="nav-icon-circle">3</div>
-                        <span class="nav-label">Layer 2</span>
-                    </a>
-                    <a href="#step-oll" class="nav-icon-box">
-                        <div class="nav-icon-circle">4</div>
-                        <span class="nav-label">OLL</span>
-                    </a>
-                    <a href="#step-pll" class="nav-icon-box">
-                        <div class="nav-icon-circle">5</div>
-                        <span class="nav-label">PLL</span>
-                    </a>
+                    <a href="#step-cross" class="nav-icon-box"><div class="nav-icon-circle">1</div><span class="nav-label">Cross</span></a>
+                    <a href="#step-layer1" class="nav-icon-box"><div class="nav-icon-circle">2</div><span class="nav-label">Layer 1</span></a>
+                    <a href="#step-layer2" class="nav-icon-box"><div class="nav-icon-circle">3</div><span class="nav-label">Layer 2</span></a>
+                    <a href="#step-oll" class="nav-icon-box"><div class="nav-icon-circle">4</div><span class="nav-label">OLL</span></a>
+                    <a href="#step-pll" class="nav-icon-box"><div class="nav-icon-circle">5</div><span class="nav-label">PLL</span></a>
                 </div>
             </div>
         </section>
@@ -77,7 +175,7 @@
                         <div class="step-content">
                             <h3>Cross</h3>
                             <p><strong>Hold White Center Down.</strong> Locate the four white edge pieces. Align the side color with the center, then rotate it down to match the white center.</p>
-                            <img src="cross_cube.png" alt="Cross" style="width: 100%; max-width: 350px; display: block; margin: 25px auto;">
+                            <img src="cross_cube.png" alt="Cube Cross Step" style="width: 100%; max-width: 350px; display: block; margin: 25px auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
                         </div>
                     </div>
 
@@ -85,12 +183,43 @@
                         <div class="step-number">02</div>
                         <div class="step-content">
                             <h3>First Layer Corners</h3>
-                            <p>Find a white corner in the top layer and align it above its target slot.</p>
-                            <ul style="padding-left: 20px; margin-top: 10px; color: #555;">
-                                <li><strong>White Facing Up:</strong> Use "Sexy Move": <code>R U R' U'</code></li>
-                                <li><strong>Facing Front (Right):</strong> <code>U R U' R'</code></li>
-                                <li><strong>Facing Front (Left):</strong> <code>U' L' U L</code></li>
-                            </ul>
+                            <p>Find a white corner in the top layer. Identify which direction the white sticker is facing, then use the corresponding algorithm.</p>
+                            
+                            <div class="oll-grid" style="margin-top: 20px;">
+                                <div class="oll-card">
+                                    <h4>Right</h4>
+                                    <img src="fl_case1.jpg" class="recognition-img" alt="Recog">
+                                    <div class="step-breakdown two-by-two">
+                                        <div class="step-img-wrapper"><div class="step-badge">1</div><img src="fl_case1-1.jpg"></div>
+                                        <div class="step-img-wrapper"><div class="step-badge">2</div><img src="fl_case1-2.jpg"></div>
+                                        <div class="step-img-wrapper"><div class="step-badge">3</div><img src="fl_case1-3.jpg"></div>
+                                        <div class="step-img-wrapper"><div class="step-badge">4</div><img src="fl_case1-4.jpg"></div>
+                                    </div>
+                                    <p>U R U' R'</p>
+                                </div>
+                                <div class="oll-card">
+                                    <h4>Left</h4>
+                                    <img src="fl_case2.jpg" class="recognition-img" alt="Recog">
+                                    <div class="step-breakdown two-by-two">
+                                        <div class="step-img-wrapper"><div class="step-badge">1</div><img src="fl_case2-1.jpg"></div>
+                                        <div class="step-img-wrapper"><div class="step-badge">2</div><img src="fl_case2-2.jpg"></div>
+                                        <div class="step-img-wrapper"><div class="step-badge">3</div><img src="fl_case2-3.jpg"></div>
+                                        <div class="step-img-wrapper"><div class="step-badge">4</div><img src="fl_case2-4.jpg"></div>
+                                    </div>
+                                    <p>U' L' U L</p>
+                                </div>
+                                <div class="oll-card">
+                                    <h4>Facing Up</h4>
+                                    <img src="fl_case3.jpg" class="recognition-img" alt="Recog">
+                                    <div class="step-breakdown two-by-two">
+                                        <div class="step-img-wrapper"><div class="step-badge">1</div><img src="fl_case3-1.jpg"></div>
+                                        <div class="step-img-wrapper"><div class="step-badge">2</div><img src="fl_case3-2.jpg"></div>
+                                        <div class="step-img-wrapper"><div class="step-badge">3</div><img src="fl_case3-3.jpg"></div>
+                                        <div class="step-img-wrapper"><div class="step-badge">4</div><img src="fl_case3-4.jpg"></div>
+                                    </div>
+                                    <p>R U2 R' U'<br><span style="font-size: 0.7em; color: #888; font-weight: normal;">(Becomes Case 2)</span></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -98,11 +227,67 @@
                         <div class="step-number">03</div>
                         <div class="step-content">
                             <h3>Second Layer</h3>
-                            <p>Find an edge in the top layer without yellow. Align it with the center color to form a "T".</p>
-                            <ul style="padding-left: 20px; margin-top: 10px; color: #555;">
-                                <li><strong>Target is Right:</strong> <code>U R U' R'</code> ... <code>U' L' U L</code></li>
-                                <li><strong>Target is Left:</strong> <code>U' L' U L</code> ... <code>U R U' R'</code></li>
-                            </ul>
+                            <p>Find an edge in the top layer without yellow. Align it to form a "T".</p>
+                            
+                            <div class="oll-grid" style="margin-top: 20px;">
+                                
+                                <div class="oll-card wide-card">
+                                    <h4>Target: Right</h4>
+                                    <img src="l2_right.jpg" class="recognition-img" alt="Move Right" style="display:block; margin: 0 auto 10px auto;">
+                                    
+                                    <p style="text-align:center; font-size:0.8rem; color:#666;">Part 1: Pair up</p>
+                                    <div class="step-breakdown">
+                                        <div class="step-img-wrapper"><div class="step-badge">1</div><img src="l2_right1.jpg"></div>
+                                        <div class="step-img-wrapper"><div class="step-badge">2</div><img src="l2_right2.jpg"></div>
+                                        <div class="step-img-wrapper"><div class="step-badge">3</div><img src="l2_right3.jpg"></div>
+                                        <div class="step-img-wrapper"><div class="step-badge">4</div><img src="l2_right4.jpg"></div>
+                                    </div>
+                                    
+                                    <div class="rotation-indicator">
+                                        ↻ Rotate Cube Right (y)<br>
+                                        <span style="font-weight:normal; font-size:0.7em;">(Turn the whole cube so the Right face becomes Front)</span>
+                                    </div>
+
+                                    <p style="text-align:center; font-size:0.8rem; color:#666;">Part 2: Insert</p>
+                                    <div class="step-breakdown">
+                                        <div class="step-img-wrapper"><div class="step-badge">5</div><img src="l2_right5.jpg"></div>
+                                        <div class="step-img-wrapper"><div class="step-badge">6</div><img src="l2_right6.jpg"></div>
+                                        <div class="step-img-wrapper"><div class="step-badge">7</div><img src="l2_right7.jpg"></div>
+                                        <div class="step-img-wrapper"><div class="step-badge">8</div><img src="l2_right8.jpg"></div>
+                                    </div>
+
+                                    <p>U R U' R' <span style="color:#333;">(y)</span> U' L' U L</p>
+                                </div>
+
+                                <div class="oll-card wide-card">
+                                    <h4>Target: Left</h4>
+                                    <img src="l2_left.jpg" class="recognition-img" alt="Move Left" style="display:block; margin: 0 auto 10px auto;">
+                                    
+                                    <p style="text-align:center; font-size:0.8rem; color:#666;">Part 1: Pair up</p>
+                                    <div class="step-breakdown">
+                                        <div class="step-img-wrapper"><div class="step-badge">1</div><img src="l2_left1.jpg"></div>
+                                        <div class="step-img-wrapper"><div class="step-badge">2</div><img src="l2_left2.jpg"></div>
+                                        <div class="step-img-wrapper"><div class="step-badge">3</div><img src="l2_left3.jpg"></div>
+                                        <div class="step-img-wrapper"><div class="step-badge">4</div><img src="l2_left4.jpg"></div>
+                                    </div>
+                                    
+                                    <div class="rotation-indicator">
+                                        ↺ Rotate Cube Left (y')<br>
+                                        <span style="font-weight:normal; font-size:0.7em;">(Turn the whole cube so the Left face becomes Front)</span>
+                                    </div>
+
+                                    <p style="text-align:center; font-size:0.8rem; color:#666;">Part 2: Insert</p>
+                                    <div class="step-breakdown">
+                                        <div class="step-img-wrapper"><div class="step-badge">5</div><img src="l2_left5.jpg"></div>
+                                        <div class="step-img-wrapper"><div class="step-badge">6</div><img src="l2_left6.jpg"></div>
+                                        <div class="step-img-wrapper"><div class="step-badge">7</div><img src="l2_left7.jpg"></div>
+                                        <div class="step-img-wrapper"><div class="step-badge">8</div><img src="l2_left8.jpg"></div>
+                                    </div>
+
+                                    <p>U' L' U L <span style="color:#333;">(y')</span> U R U' R'</p>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
 
@@ -110,8 +295,8 @@
                         <div class="step-number">04</div>
                         <div class="step-content">
                             <h3>2-Step OLL</h3>
-                            <p><strong>1. Make Yellow Cross:</strong> <code>F (R U R' U') F'</code></p>
-                            <p style="margin-top:10px;"><strong>2. Orient Corners (Sune):</strong> <code>R U R' U R U2 R'</code></p>
+                            <p><strong>1. Yellow Cross:</strong> <code>F (R U R' U') F'</code></p>
+                            <p><strong>2. Orient Corners:</strong> <code>R U R' U R U2 R'</code></p>
                         </div>
                     </div>
 
@@ -119,8 +304,8 @@
                         <div class="step-number">05</div>
                         <div class="step-content">
                             <h3>2-Step PLL</h3>
-                            <p><strong>1. Permute Corners (T-Perm):</strong> <code>R U R' U' R' F R2 U' R' U' R U R' F'</code></p>
-                            <p style="margin-top:10px;"><strong>2. Permute Edges (U-Perm):</strong> <code>R U' R U R U R U' R' U' R2</code></p>
+                            <p><strong>1. Corners:</strong> <code>R U R' U' R' F R2 U' R' U' R U R' F'</code></p>
+                            <p><strong>2. Edges:</strong> <code>R U' R U R U R U' R' U' R2</code></p>
                         </div>
                     </div>
 
