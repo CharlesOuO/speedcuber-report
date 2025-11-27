@@ -6,6 +6,71 @@
     <title>CFOP Method - Charles Lin</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* F2L/OLL/PLL 卡片樣式 */
+        .oll-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .oll-card {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            text-align: center;
+            border: 1px solid #eee;
+            position: relative;
+            transition: transform 0.2s ease, box-shadow 0.2s ease; 
+        }
+
+        .oll-card:hover {
+            transform: scale(1.1);
+            z-index: 100;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition-delay: 0.2s; 
+        }
+
+        .oll-card h4 {
+            margin: 0 0 5px 0;
+            color: #555;
+            font-size: 0.85rem;
+        }
+
+        .oll-card img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin-bottom: 5px;
+        }
+
+        .oll-card p {
+            font-size: 0.75rem;
+            color: #007BFF;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1.3;
+            word-wrap: break-word;
+            background: white;
+        }
+
+        /* F2L 分類標題樣式 */
+        .f2l-category-title {
+            grid-column: 1 / -1;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            color: #0a192f;
+            border-left: 4px solid #FFC107;
+            padding-left: 10px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
     <header class="hero-header">
@@ -49,53 +114,160 @@
 
         <section class="section-gray">
             <div class="container">
-                <div id="step-cross" class="section-header text-center" style="margin-top: 20px;">
-                    <h2>Cross</h2><div class="divider"></div><p>Build the cross directly on the bottom.</p>
+                
+                <div class="section-header text-center">
+                    <h2>Detailed Steps</h2>
+                    <div class="divider"></div>
                 </div>
+
                 <div class="step-detail-view">
-                    <div class="step-card step-detail-card">
+
+                    <div id="step-cross" class="step-card step-detail-card">
                         <div class="step-number">C</div>
                         <div class="step-content">
-                            <h3>The White Cross</h3>
-                            <p>Plan the entire cross during inspection.</p>
+                            <h3>Cross</h3>
+                            <p>Build the cross directly on the bottom (D-face) to save rotation time. Plan the entire cross during inspection.</p>
                             <img src="cross_cube.png" alt="Cross" style="width: 200px; display:block; margin: 20px auto;">
                         </div>
                     </div>
-                </div>
 
-                <div id="step-f2l" class="section-header text-center" style="margin-top: 60px;">
-                    <h2>F2L (First 2 Layers)</h2><div class="divider"></div><p>Solving corners and edges simultaneously.</p>
-                </div>
-                <div class="step-detail-view">
-                    <div class="step-card step-detail-card">
+                    <div id="step-f2l" class="step-card step-detail-card">
                         <div class="step-number">F</div>
                         <div class="step-content">
-                            <h3>F2L Pairing</h3>
-                            <p>Solve pairs instead of individual pieces. (41 Basic Cases)</p>
-                            <img src="f2l_basic.png" alt="F2L" onerror="this.src='https://via.placeholder.com/200?text=F2L+Image'" style="width: 200px; display:block; margin: 20px auto;">
+                            <h3>F2L (First 2 Layers)</h3>
+                            <p>Solving corners and edges simultaneously (41 Cases). Organized by case type.</p>
+                            <div id="f2l-container" class="oll-grid" style="grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));"></div>
                         </div>
                     </div>
-                </div>
 
-                <div id="step-oll" class="section-header text-center" style="margin-top: 60px;">
-                    <h2>OLL (Orientation)</h2><div class="divider"></div><p>Orienting the top layer (57 Algorithms).</p>
-                </div>
-                <div id="oll-container" class="oll-grid"></div>
+                    <div id="step-oll" class="step-card step-detail-card">
+                        <div class="step-number">O</div>
+                        <div class="step-content">
+                            <h3>OLL (Orientation)</h3>
+                            <p>Orienting all pieces on the top layer (57 Algorithms).</p>
+                            <div id="oll-container" class="oll-grid"></div>
+                        </div>
+                    </div>
 
-                <div id="step-pll" class="section-header text-center" style="margin-top: 60px;">
-                    <h2>PLL (Permutation)</h2><div class="divider"></div><p>Permuting the last layer (21 Algorithms).</p>
+                    <div id="step-pll" class="step-card step-detail-card">
+                        <div class="step-number">P</div>
+                        <div class="step-content">
+                            <h3>PLL (Permutation)</h3>
+                            <p>Permuting pieces to solve the cube (21 Algorithms).</p>
+                            <div id="pll-container" class="oll-grid"></div>
+                        </div>
+                    </div>
+
                 </div>
-                <div id="pll-container" class="oll-grid"></div>
             </div>
         </section>
     </main>
 
     <footer>
-        <div class="container"><p>© 2025 Charles Lin. WCA ID: 2020LINC05</p></div>
+        <div class="container">
+            <p>© 2025 Charles Lin. WCA ID: 2020LINC05</p>
+        </div>
     </footer>
 
     <script>
-        // OLL Data (Standard 2H - Images are .jpg)
+        // --- F2L Data (Categorized 41 Cases) ---
+        const f2lGroups = [
+            {
+                name: "Basic Cases (Easy)",
+                cases: [
+                    { id: 1, name: "F2L 1", alg: "U R U' R'" },
+                    { id: 2, name: "F2L 2", alg: "y' U' R' U R" },
+                    { id: 3, name: "F2L 3", alg: "R U R'" },
+                    { id: 4, name: "F2L 4", alg: "y' R' U' R" }
+                ]
+            },
+            {
+                name: "Split Pair (Corner/Edge Separate)",
+                cases: [
+                    { id: 5, name: "F2L 5", alg: "U' R U R' U2 R U' R'" },
+                    { id: 6, name: "F2L 6", alg: "d R' U' R U2 R' U R" },
+                    { id: 7, name: "F2L 7", alg: "U' R U2 R' U2 R U' R'" },
+                    { id: 8, name: "F2L 8", alg: "d R' U2 R U2 R' U R" },
+                    { id: 9, name: "F2L 9", alg: "U' R U' R' U y' R' U' R" },
+                    { id: 10, name: "F2L 10", alg: "U' R U R' U R U R'" },
+                    { id: 11, name: "F2L 11", alg: "U R U2 R' U R U' R'" },
+                    { id: 12, name: "F2L 12", alg: "y' U' R' U2 R U' R' U R" }
+                ]
+            },
+            {
+                name: "Connected Pair (Touching)",
+                cases: [
+                    { id: 13, name: "F2L 13", alg: "U' R U2 R' U y' R' U' R" },
+                    { id: 14, name: "F2L 14", alg: "y' U R' U2 R U' R' U R" },
+                    { id: 15, name: "F2L 15", alg: "R U' R' U2 y' R' U' R" },
+                    { id: 16, name: "F2L 16", alg: "R U R' U2 R U' R' U R U' R'" },
+                    { id: 17, name: "F2L 17", alg: "R U2 R' U' R U R'" },
+                    { id: 18, name: "F2L 18", alg: "y' R' U2 R U R' U' R" }
+                ]
+            },
+            {
+                name: "Corner in Bottom Slot",
+                cases: [
+                    { id: 19, name: "F2L 19", alg: "U R U' R' U' R U' R' U R U' R'" },
+                    { id: 20, name: "F2L 20", alg: "U' R U R' U R U R' U' R U R'" },
+                    { id: 21, name: "F2L 21", alg: "U R U' R' U R U' R'" },
+                    { id: 22, name: "F2L 22", alg: "U' R U R' U' R U R'" },
+                    { id: 23, name: "F2L 23", alg: "U2 R U R' U R U' R'" },
+                    { id: 24, name: "F2L 24", alg: "R U' R' U y' R' U R" }
+                ]
+            },
+            {
+                name: "White Corner Facing Up",
+                cases: [
+                    { id: 25, name: "F2L 25", alg: "R U R' U' R U R' U' R U R'" },
+                    { id: 26, name: "F2L 26", alg: "U R U2 R' U R U' R'" },
+                    { id: 27, name: "F2L 27", alg: "y' U' R' U2 R U' R' U R" },
+                    { id: 28, name: "F2L 28", alg: "U2 R U2 R' U R U' R'" },
+                    { id: 29, name: "F2L 29", alg: "y' U2 R' U2 R U' R' U R" },
+                    { id: 30, name: "F2L 30", alg: "U R U2 R2 F R F'" }
+                ]
+            },
+            {
+                name: "Edge in Middle Layer",
+                cases: [
+                    { id: 31, name: "F2L 31", alg: "U' R U' R' U y' R' U R" },
+                    { id: 32, name: "F2L 32", alg: "U R U R' U' y' R' U' R" },
+                    { id: 33, name: "F2L 33", alg: "U' R U R' d R' U' R" },
+                    { id: 34, name: "F2L 34", alg: "U R U' R' d R' U R" },
+                    { id: 35, name: "F2L 35", alg: "R U' R' d R' U R" },
+                    { id: 36, name: "F2L 36", alg: "R U R' U' R U' R' U y' R' U R" }
+                ]
+            },
+            {
+                name: "Both in Slot (Broken/Wrong)",
+                cases: [
+                    { id: 37, name: "F2L 37", alg: "R U' R' U' R U R' U2 R U' R'" },
+                    { id: 38, name: "F2L 38", alg: "R U R' U' R U2 R' U' R U R'" },
+                    { id: 39, name: "F2L 39", alg: "R U R' U2 R U' R' U R U R'" },
+                    { id: 40, name: "F2L 40", alg: "R U' R' U R U2 R' U R U' R'" },
+                    { id: 41, name: "F2L 41", alg: "R U2 R' U' R U2 R' U R U' R'" }
+                ]
+            }
+        ];
+
+        // --- Render F2L (Using JPG) ---
+        const f2lContainer = document.getElementById('f2l-container');
+        f2lGroups.forEach(group => {
+            const title = document.createElement('div');
+            title.className = 'f2l-category-title';
+            title.innerText = group.name;
+            f2lContainer.appendChild(title);
+
+            group.cases.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'oll-card';
+                const imgSrc = `f2l-${item.id}.jpg`;
+                card.innerHTML = `<h4>${item.name}</h4><img src="${imgSrc}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/100?text=F2L${item.id}'"><p>${item.alg}</p>`;
+                f2lContainer.appendChild(card);
+            });
+        });
+
+        // --- Standard OLL & PLL Data (Same as before) ---
         const ollData = [
             { id: 1, alg: "R U2 R2 F R F' U2 R' F R F'" }, { id: 2, alg: "r U r' U2 r U2 R' U2 R U' r'" },
             { id: 3, alg: "f R U R' U' f' U' F R U R' U' F'" }, { id: 4, alg: "f R U R' U' f' U F R U R' U' F'" },
@@ -128,7 +300,6 @@
             { id: 57, alg: "R U R' U' M' U R U' r'" }
         ];
 
-        // PLL Data (Standard 2H)
         const pllData = [
             { id: "aa", name: "Aa Perm", alg: "x R' U R' D2 R U' R' D2 R2" },
             { id: "ab", name: "Ab Perm", alg: "x R2 D2 R U R' D2 R U' R" },
@@ -157,7 +328,7 @@
         ollData.forEach(item => {
             const card = document.createElement('div');
             card.className = 'oll-card';
-            const imgSrc = `oll${item.id}.jpg`; 
+            const imgSrc = `oll${item.id}.jpg`;
             card.innerHTML = `<h4>OLL ${item.id}</h4><img src="${imgSrc}" alt="OLL" onerror="this.src='https://via.placeholder.com/70'"><p>${item.alg}</p>`;
             ollContainer.appendChild(card);
         });
@@ -165,8 +336,8 @@
         const pllContainer = document.getElementById('pll-container');
         pllData.forEach(item => {
             const card = document.createElement('div');
-            card.className = 'oll-card'; 
-            const imgSrc = `pll_${item.id}.jpg`; 
+            card.className = 'oll-card';
+            const imgSrc = `pll_${item.id}.jpg`;
             card.innerHTML = `<h4>${item.name}</h4><img src="${imgSrc}" alt="PLL" onerror="this.src='https://via.placeholder.com/70'"><p>${item.alg}</p>`;
             pllContainer.appendChild(card);
         });

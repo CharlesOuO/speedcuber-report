@@ -6,6 +6,57 @@
     <title>3x3 OH - Charles Lin</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* OLL/PLL 專用的緊湊排版 */
+        .oll-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .oll-card {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            text-align: center;
+            border: 1px solid #eee;
+            position: relative;
+            transition: transform 0.2s ease, box-shadow 0.2s ease; 
+        }
+
+        .oll-card:hover {
+            transform: scale(1.5);
+            z-index: 100;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition-delay: 0.5s; 
+        }
+
+        .oll-card h4 {
+            margin: 0 0 5px 0;
+            color: #555;
+            font-size: 0.85rem;
+        }
+
+        .oll-card img {
+            width: 80px;  
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 5px;
+        }
+
+        .oll-card p {
+            font-size: 0.75rem;
+            color: #007BFF;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1.3;
+            word-wrap: break-word;
+            background: white;
+        }
+    </style>
 </head>
 <body>
     <header class="hero-header">
@@ -39,15 +90,27 @@
         <section class="section-gray">
             <div class="container">
                 <div class="section-header text-center">
-                    <h2>1. My Finger Tricks</h2><div class="divider"></div>
+                    <h2>1. My Finger Tricks</h2>
+                    <div class="divider"></div>
                 </div>
+
                 <div class="records-grid">
-                    <div class="record-card"><h3>Ring Finger (R / R')</h3><p>I primarily use my <strong>Ring Finger</strong> for R' moves (pulling down) and stabilizing the cube.</p></div>
-                    <div class="record-card"><h3>Index Push (U / U')</h3><p>For U moves, I use my index finger to push or pull. E.g., Pushing FL to BL for U moves.</p></div>
-                    <div class="record-card"><h3>L / L'</h3><p>Perform an <strong>x rotation</strong> first, then execute as standard <strong>U / U'</strong> moves.</p></div>
-                    <div class="record-card"><h3>D / D'</h3><p>Flick using the <strong>Ring Finger</strong>.</p></div>
-                    <div class="record-card"><h3>R2</h3><p><strong>Pinky + Ring</strong> double flick (continuous).</p></div>
-                    <div class="record-card"><h3>S / S'</h3><p><strong>S:</strong> Ring Finger Hook.<br><strong>S':</strong> Index Finger Flick.</p></div>
+                    <div class="record-card">
+                        <h3>Ring Finger (R / R')</h3>
+                        <p>I primarily use my <strong>Ring Finger</strong> for R' moves (pulling down) and stabilizing the cube.</p>
+                    </div>
+                    <div class="record-card">
+                        <h3>Index Push (U / U')</h3>
+                        <p>For U moves, I use my index finger to push or pull. E.g., Pushing FL to BL for U moves.</p>
+                    </div>
+                    <div class="record-card">
+                        <h3>Floating Style</h3>
+                        <p>I solve without resting the cube on the table. This requires stronger grip strength.</p>
+                    </div>
+                    <div class="record-card">
+                        <h3>Stable Grip</h3>
+                        <p>Keeping the thumb on the front center is crucial for seamless transitions.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -55,13 +118,18 @@
         <section class="section-white">
             <div class="container">
                 <div class="section-header text-center">
-                    <h2>2. Full 57 OLL Algorithms</h2><div class="divider"></div><p>Standard RU-Gen focused algorithms for OH.</p>
+                    <h2>2. Full 57 OLL Algorithms</h2>
+                    <div class="divider"></div>
+                    <p>Standard RU-Gen focused algorithms for OH.</p>
                 </div>
+
                 <div class="intro-card" style="margin-bottom: 20px; text-align: left;">
                     <div class="note-box" style="margin-top: 0;">
-                        <strong>Advanced Strategy (COLL):</strong> Using <strong>COLL</strong> (Corners of Last Layer) algorithms can significantly improve OH performance. By solving OLL and permuting corners simultaneously, you are guaranteed to get an EPLL (U, H, Z perms), which are much faster one-handed.
+                        <strong>Advanced Strategy (COLL):</strong> 
+                        Using <strong>COLL</strong> (Corners of Last Layer) algorithms can significantly improve OH performance. By solving OLL and permuting corners simultaneously, you are guaranteed to get an EPLL (Edge Permutation only) like U, H, or Z perms, which are much faster and easier to execute one-handed.
                     </div>
                 </div>
+                
                 <div id="oll-container" class="oll-grid"></div>
             </div>
         </section>
@@ -69,7 +137,9 @@
         <section class="section-gray">
             <div class="container">
                 <div class="section-header text-center">
-                    <h2>3. Full 21 PLL Algorithms</h2><div class="divider"></div><p>RU-Gen optimized algorithms (No M-Slices).</p>
+                    <h2>3. Full 21 PLL Algorithms</h2>
+                    <div class="divider"></div>
+                    <p>RU-Gen optimized algorithms (No M-Slices for OH).</p>
                 </div>
                 <div id="pll-container" class="oll-grid"></div>
             </div>
@@ -77,44 +147,76 @@
     </main>
 
     <footer>
-        <div class="container"><p>© 2025 Charles Lin. WCA ID: 2020LINC05</p></div>
+        <div class="container">
+            <p>© 2025 Charles Lin. WCA ID: 2020LINC05</p>
+        </div>
     </footer>
 
     <script>
-        // OLL Data (Same as above, standardizing)
+        // --- 1. OLL Data (1-57) ---
+        // 已將所有圖片設定為讀取 .jpg
         const ollData = [
-            { id: 1, alg: "R U2 R2 F R F' U2 R' F R F'" }, { id: 2, alg: "r U r' U2 r U2 R' U2 R U' r'" },
-            { id: 3, alg: "f R U R' U' f' U' F R U R' U' F'" }, { id: 4, alg: "f R U R' U' f' U F R U R' U' F'" },
-            { id: 5, alg: "l' U2 L U L' U l" }, { id: 6, alg: "r U2 R' U' R U' r'" },
-            { id: 7, alg: "r U R' U R U2 r'" }, { id: 8, alg: "l' U' L U' L' U2 l" },
-            { id: 9, alg: "R U R' U' R' F R2 U R' U' F'" }, { id: 10, alg: "R U R' U R' F R F' R U2 R'" },
-            { id: 11, alg: "r U R' U R' F R F' R U2 r'" }, { id: 12, alg: "M' R' U' R U' R' U2 R U' M" },
-            { id: 13, alg: "F U R U' R2 F' R U R U' R'" }, { id: 14, alg: "R' U' R U' R' U2 R" },
-            { id: 15, alg: "l' U' l L' U' L U l' U l" }, { id: 16, alg: "r U r' R U R' U' r U' r'" },
-            { id: 17, alg: "R U R' U R' F R F' U2 R' F R F'" }, { id: 18, alg: "r U R' U R U2 r2 U' R U' R' U2 r" },
-            { id: 19, alg: "M U R U R' U' M' R' F R F'" }, { id: 20, alg: "M U R U R' U' M2 U R U' r'" },
-            { id: 21, alg: "R U2 R2 U' R2 U' R2 U2 R" }, { id: 22, alg: "R U2 R2 U' R2 U' R2 U2 R" },
-            { id: 23, alg: "R2 D R' U2 R D' R' U2 R'" }, { id: 24, alg: "r U R' U' r' F R F'" },
-            { id: 25, alg: "F' r U R' U' r' F R" }, { id: 26, alg: "R' U' R U' R' U2 R" },
-            { id: 27, alg: "R U R' U R U2 R'" }, { id: 28, alg: "r U R' U' r' R U R U' R'" },
-            { id: 29, alg: "R U R' U' R U' R' F' U' F R U R'" }, { id: 30, alg: "F R' F R2 U' R' U' R U R' F2" },
-            { id: 31, alg: "R' U' F U R U' R' F' R" }, { id: 32, alg: "R U B' U' R' U R B R'" },
-            { id: 33, alg: "R U R' U' R' F R F'" }, { id: 34, alg: "R U R2 U' R' F R U R U' F'" },
-            { id: 35, alg: "R U2 R2 F R F' R U2 R'" }, { id: 36, alg: "L' U' L U' L' U L U L F' L' F" },
-            { id: 37, alg: "F R U' R' U' R U R' F'" }, { id: 38, alg: "R U R' U R U' R' U' R' F R F'" },
-            { id: 39, alg: "L F' L' U' L U F U' L'" }, { id: 40, alg: "R' F R U R' U' F' U R" },
-            { id: 41, alg: "R U R' U R U2 R' F R U R' U' F'" }, { id: 42, alg: "R' U' R U' R' U2 R F R U R' U' F'" },
-            { id: 43, alg: "f' L' U' L U f" }, { id: 44, alg: "f R U R' U' f'" },
-            { id: 45, alg: "F R U R' U' F'" }, { id: 46, alg: "R' U' R' F R F' U R" },
-            { id: 47, alg: "F' L' U' L U L' U' L U F" }, { id: 48, alg: "F R U R' U' R U R' U' F'" },
-            { id: 49, alg: "r U' r2 U r2 U r2 U' r" }, { id: 50, alg: "r' U r2 U' r2 U' r2 U r'" },
-            { id: 51, alg: "f R U R' U' R U R' U' f'" }, { id: 52, alg: "R' U' R U' R' U F' U F R" },
-            { id: 53, alg: "r' U' r R' U' R U r' U r" }, { id: 54, alg: "r U R' U R U' R' U R U2 r'" },
-            { id: 55, alg: "R' F R U R U' R2 F' R2 U' R' U R U R'" }, { id: 56, alg: "r' U r U R U' R' r U' r'" },
+            { id: 1, alg: "R U2 R2 F R F' U2 R' F R F'" },
+            { id: 2, alg: "r U r' U2 r U2 R' U2 R U' r'" },
+            { id: 3, alg: "f R U R' U' f' U' F R U R' U' F'" },
+            { id: 4, alg: "f R U R' U' f' U F R U R' U' F'" },
+            { id: 5, alg: "l' U2 L U L' U l" },
+            { id: 6, alg: "r U2 R' U' R U' r'" },
+            { id: 7, alg: "r U R' U R U2 r'" },
+            { id: 8, alg: "l' U' L U' L' U2 l" },
+            { id: 9, alg: "R U R' U' R' F R2 U R' U' F'" },
+            { id: 10, alg: "R U R' U R' F R F' R U2 R'" },
+            { id: 11, alg: "r U R' U R' F R F' R U2 r'" },
+            { id: 12, alg: "M' R' U' R U' R' U2 R U' M" },
+            { id: 13, alg: "F U R U' R2 F' R U R U' R'" },
+            { id: 14, alg: "R' U' R U' R' U2 R" },
+            { id: 15, alg: "l' U' l L' U' L U l' U l" },
+            { id: 16, alg: "r U r' R U R' U' r U' r'" },
+            { id: 17, alg: "R U R' U R' F R F' U2 R' F R F'" },
+            { id: 18, alg: "r U R' U R U2 r2 U' R U' R' U2 r" },
+            { id: 19, alg: "M U R U R' U' M' R' F R F'" },
+            { id: 20, alg: "M U R U R' U' M2 U R U' r'" },
+            { id: 21, alg: "R U2 R2 U' R2 U' R2 U2 R" },
+            { id: 22, alg: "R U2 R2 U' R2 U' R2 U2 R" },
+            { id: 23, alg: "R2 D R' U2 R D' R' U2 R'" },
+            { id: 24, alg: "r U R' U' r' F R F'" },
+            { id: 25, alg: "F' r U R' U' r' F R" },
+            // ✅ 修改處：OLL 26 改為您指定的公式
+            { id: 26, alg: "R' U' R U' R' U2 R" },
+            { id: 27, alg: "R U R' U R U2 R'" },
+            { id: 28, alg: "r U R' U' r' R U R U' R'" },
+            { id: 29, alg: "R U R' U' R U' R' F' U' F R U R'" },
+            { id: 30, alg: "F R' F R2 U' R' U' R U R' F2" },
+            { id: 31, alg: "R' U' F U R U' R' F' R" },
+            { id: 32, alg: "R U B' U' R' U R B R'" },
+            { id: 33, alg: "R U R' U' R' F R F'" },
+            { id: 34, alg: "R U R2 U' R' F R U R U' F'" },
+            { id: 35, alg: "R U2 R2 F R F' R U2 R'" },
+            { id: 36, alg: "L' U' L U' L' U L U L F' L' F" },
+            { id: 37, alg: "F R U' R' U' R U R' F'" },
+            { id: 38, alg: "R U R' U R U' R' U' R' F R F'" },
+            { id: 39, alg: "L F' L' U' L U F U' L'" },
+            { id: 40, alg: "R' F R U R' U' F' U R" },
+            { id: 41, alg: "R U R' U R U2 R' F R U R' U' F'" },
+            { id: 42, alg: "R' U' R U' R' U2 R F R U R' U' F'" },
+            { id: 43, alg: "f' L' U' L U f" },
+            { id: 44, alg: "f R U R' U' f'" },
+            { id: 45, alg: "F R U R' U' F'" },
+            { id: 46, alg: "R' U' R' F R F' U R" },
+            { id: 47, alg: "F' L' U' L U L' U' L U F" },
+            { id: 48, alg: "F R U R' U' R U R' U' F'" },
+            { id: 49, alg: "r U' r2 U r2 U r2 U' r" },
+            { id: 50, alg: "r' U r2 U' r2 U' r2 U r'" },
+            { id: 51, alg: "f R U R' U' R U R' U' f'" },
+            { id: 52, alg: "R' U' R U' R' U F' U F R" },
+            { id: 53, alg: "r' U' r R' U' R U r' U r" },
+            { id: 54, alg: "r U R' U R U' R' U R U2 r'" },
+            { id: 55, alg: "R' F R U R U' R2 F' R2 U' R' U R U R'" },
+            { id: 56, alg: "r' U r U R U' R' r U' r'" },
             { id: 57, alg: "R U R' U' M' U R U' r'" }
         ];
 
-        // PLL Data (OH Specific - RU Gen for H/Z/U)
+        // --- 2. PLL Data (21 Algs) - Images as .jpg ---
         const pllData = [
             { id: "aa", name: "Aa Perm", alg: "x R' U R' D2 R U' R' D2 R2" },
             { id: "ab", name: "Ab Perm", alg: "x R2 D2 R U R' D2 R U' R" },
@@ -133,28 +235,38 @@
             { id: "nb", name: "Nb Perm", alg: "R' U R U' R' F' U' F R U R' F R' F' R U' R" },
             { id: "v", name: "V Perm", alg: "R' U R' U' R D' R' D R' U D' R2 U' R2 D R2" },
             { id: "y", name: "Y Perm", alg: "F R U' R' U' R U R' F' R U R' U' R' F R F'" },
-            // RU-Gen for OH
+            // OH-Specific RU-Gen Algs for H, Z, U
             { id: "h", name: "H Perm (RU)", alg: "R2 U2 R U2 R2 U2 R2 U2 R U2 R2" },
             { id: "ua", name: "Ua Perm (RU)", alg: "R U' R U R U R U' R' U' R2" },
             { id: "ub", name: "Ub Perm (RU)", alg: "R2 U R U R' U' R' U' R' U R'" },
             { id: "z", name: "Z Perm (RU)", alg: "R' U' R2 U R U R' U' R U R U' R U' R" }
         ];
 
+        // --- Render OLL (Fixed: .jpg) ---
         const ollContainer = document.getElementById('oll-container');
         ollData.forEach(item => {
             const card = document.createElement('div');
             card.className = 'oll-card';
-            const imgSrc = `oll${item.id}.jpg`;
-            card.innerHTML = `<h4>OLL ${item.id}</h4><img src="${imgSrc}" alt="OLL" onerror="this.src='https://via.placeholder.com/70'"><p>${item.alg}</p>`;
+            const imgSrc = `oll${item.id}.jpg`; 
+            card.innerHTML = `
+                <h4>OLL ${item.id}</h4>
+                <img src="${imgSrc}" alt="OLL ${item.id}" onerror="this.src='https://via.placeholder.com/70?text=IMG'">
+                <p>${item.alg}</p>
+            `;
             ollContainer.appendChild(card);
         });
 
+        // --- Render PLL (Fixed: .jpg) ---
         const pllContainer = document.getElementById('pll-container');
         pllData.forEach(item => {
             const card = document.createElement('div');
-            card.className = 'oll-card';
-            const imgSrc = `pll_${item.id}.jpg`;
-            card.innerHTML = `<h4>${item.name}</h4><img src="${imgSrc}" alt="PLL" onerror="this.src='https://via.placeholder.com/70'"><p>${item.alg}</p>`;
+            card.className = 'oll-card'; 
+            const imgSrc = `pll_${item.id}.jpg`; 
+            card.innerHTML = `
+                <h4>${item.name}</h4>
+                <img src="${imgSrc}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/70?text=IMG'">
+                <p>${item.alg}</p>
+            `;
             pllContainer.appendChild(card);
         });
     </script>
