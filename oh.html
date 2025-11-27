@@ -79,69 +79,99 @@
     </header>
 
     <main>
-        <section class="section-white intro-section">
+        <section class="section-white intro-section icon-nav-section">
             <div class="container">
+                <div class="section-header text-center">
+                    <h2>Overview</h2>
+                    <div class="divider"></div>
+                </div>
                 <div class="intro-card">
                     <p><strong>One-Handed (OH)</strong> solving is my specialty. I focus on smooth turning and high TPS. Unlike many solvers, <strong>I do not use the table</strong> for stability; I prefer a fully floating style with precise grip control.</p>
                 </div>
+
+                <div class="icon-nav-grid">
+                    <a href="#step-ft" class="nav-icon-box">
+                        <div class="nav-icon-circle">1</div>
+                        <span class="nav-label">Tricks</span>
+                    </a>
+                    <a href="#step-oll" class="nav-icon-box">
+                        <div class="nav-icon-circle">2</div>
+                        <span class="nav-label">OLL</span>
+                    </a>
+                    <a href="#step-pll" class="nav-icon-box">
+                        <div class="nav-icon-circle">3</div>
+                        <span class="nav-label">PLL</span>
+                    </a>
+                </div>
             </div>
         </section>
 
         <section class="section-gray">
             <div class="container">
                 <div class="section-header text-center">
-                    <h2>1. My Finger Tricks</h2>
+                    <h2>Detailed Techniques</h2>
                     <div class="divider"></div>
                 </div>
 
-                <div class="records-grid">
-                    <div class="record-card">
-                        <h3>Ring Finger (R / R')</h3>
-                        <p>I primarily use my <strong>Ring Finger</strong> for R' moves (pulling down) and stabilizing the cube.</p>
-                    </div>
-                    <div class="record-card">
-                        <h3>Index Push (U / U')</h3>
-                        <p>For U moves, I use my index finger to push or pull. E.g., Pushing FL to BL for U moves.</p>
-                    </div>
-                    <div class="record-card">
-                        <h3>Floating Style</h3>
-                        <p>I solve without resting the cube on the table. This requires stronger grip strength.</p>
-                    </div>
-                    <div class="record-card">
-                        <h3>Stable Grip</h3>
-                        <p>Keeping the thumb on the front center is crucial for seamless transitions.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+                <div class="step-detail-view">
 
-        <section class="section-white">
-            <div class="container">
-                <div class="section-header text-center">
-                    <h2>2. Full 57 OLL Algorithms</h2>
-                    <div class="divider"></div>
-                    <p>Standard RU-Gen focused algorithms for OH.</p>
-                </div>
-
-                <div class="intro-card" style="margin-bottom: 20px; text-align: left;">
-                    <div class="note-box" style="margin-top: 0;">
-                        <strong>Advanced Strategy (COLL):</strong> 
-                        Using <strong>COLL</strong> (Corners of Last Layer) algorithms can significantly improve OH performance. By solving OLL and permuting corners simultaneously, you are guaranteed to get an EPLL (Edge Permutation only) like U, H, or Z perms, which are much faster and easier to execute one-handed.
+                    <div id="step-ft" class="step-card step-detail-card">
+                        <div class="step-number">01</div>
+                        <div class="step-content">
+                            <h3>My Finger Tricks</h3>
+                            <p>Mastering these specific movements is essential for efficient OH solving.</p>
+                            
+                            <div class="records-grid" style="margin-top: 20px;">
+                                <div class="record-card">
+                                    <h3>Ring Finger (R / R')</h3>
+                                    <p>I primarily use my <strong>Ring Finger</strong> for R' moves (pulling down) and stabilizing the cube.</p>
+                                </div>
+                                <div class="record-card">
+                                    <h3>Index Push (U / U')</h3>
+                                    <p>For U moves, I use my index finger to push or pull. E.g., Pushing FL to BL for U moves.</p>
+                                </div>
+                                <div class="record-card">
+                                    <h3>Floating Style</h3>
+                                    <p>I solve without resting the cube on the table. This requires stronger grip strength.</p>
+                                </div>
+                                <div class="record-card">
+                                    <h3>Stable Grip</h3>
+                                    <p>Keeping the thumb on the front center is crucial for seamless transitions.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                
-                <div id="oll-container" class="oll-grid"></div>
-            </div>
-        </section>
 
-        <section class="section-gray">
-            <div class="container">
-                <div class="section-header text-center">
-                    <h2>3. Full 21 PLL Algorithms</h2>
-                    <div class="divider"></div>
-                    <p>RU-Gen optimized algorithms (No M-Slices for OH).</p>
+                    <div id="step-oll" class="step-card step-detail-card">
+                        <div class="step-number">02</div>
+                        <div class="step-content">
+                            <h3>Full 57 OLL Algorithms</h3>
+                            <p>Standard RU-Gen focused algorithms for OH.</p>
+
+                            <div class="note-box" style="margin-top: 20px;">
+                                <strong>Advanced Strategy (COLL):</strong> 
+                                Using <strong>COLL</strong> (Corners of Last Layer) algorithms can significantly improve OH performance. By solving OLL and permuting corners simultaneously, you are guaranteed to get an EPLL (Edge Permutation only) like U, H, or Z perms, which are much faster and easier to execute one-handed.
+                            </div>
+
+                            <div id="oll-container" class="oll-grid"></div>
+                        </div>
+                    </div>
+
+                    <div id="step-pll" class="step-card step-detail-card">
+                        <div class="step-number">03</div>
+                        <div class="step-content">
+                            <h3>Full 21 PLL Algorithms</h3>
+                            <p>RU-Gen optimized algorithms (No M-Slices for OH).</p>
+
+                            <div class="note-box" style="margin-top: 20px;">
+                                <strong>Note:</strong> Avoiding M-slices (Middle layer) is critical in OH. I use RU-Gen alternatives for H, Z, and U perms.
+                            </div>
+
+                            <div id="pll-container" class="oll-grid"></div>
+                        </div>
+                    </div>
+
                 </div>
-                <div id="pll-container" class="oll-grid"></div>
             </div>
         </section>
     </main>
@@ -154,7 +184,7 @@
 
     <script>
         // --- 1. OLL Data (1-57) ---
-        // 已將所有圖片設定為讀取 .jpg
+        // 已將所有圖片設定為讀取 .jpg，並且 OLL 26 更新為您的公式
         const ollData = [
             { id: 1, alg: "R U2 R2 F R F' U2 R' F R F'" },
             { id: 2, alg: "r U r' U2 r U2 R' U2 R U' r'" },
@@ -181,8 +211,7 @@
             { id: 23, alg: "R2 D R' U2 R D' R' U2 R'" },
             { id: 24, alg: "r U R' U' r' F R F'" },
             { id: 25, alg: "F' r U R' U' r' F R" },
-            // ✅ 修改處：OLL 26 改為您指定的公式
-            { id: 26, alg: "R' U' R U' R' U2 R" },
+            { id: 26, alg: "R' U' R U' R' U2 R" }, // Updated
             { id: 27, alg: "R U R' U R U2 R'" },
             { id: 28, alg: "r U R' U' r' R U R U' R'" },
             { id: 29, alg: "R U R' U' R U' R' F' U' F R U R'" },
