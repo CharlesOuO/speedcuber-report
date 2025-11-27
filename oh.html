@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3x3 OH - Charles Lin</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <style>
         /* OLL/PLL 專用的緊湊排版 */
@@ -27,11 +28,11 @@
         }
 
         .oll-card:hover {
-            transform: scale(1.5);
+            transform: scale(1.1); /* 統一放大倍率 */
             z-index: 100;
             box-shadow: 0 15px 30px rgba(0,0,0,0.2);
             cursor: pointer;
-            transition-delay: 0.5s; 
+            transition-delay: 0.2s; 
         }
 
         .oll-card h4 {
@@ -179,123 +180,72 @@
     <footer>
         <div class="container">
             <p>© 2025 Charles Lin. WCA ID: 2020LINC05</p>
+            <div class="social-links">
+                <a href="https://www.worldcubeassociation.org/persons/2020LINC05" target="_blank" style="font-size: 1.5rem;" title="WCA Profile">
+                    <i class="fas fa-cube"></i>
+                </a>
+                <a href="https://www.instagram.com/chihjialin?igsh=MW5iZmM4bWJsZXJhZw%3D%3D&utm_source=qr" target="_blank" style="font-size: 1.5rem;" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://github.com/CharlesOuO" target="_blank" style="font-size: 1.5rem;" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:linchihjia@gmail.com" style="font-size: 1.5rem;" title="Email Me">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
         </div>
     </footer>
 
+    <button id="backToTop" onclick="scrollToTop()" title="Go to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
     <script>
+        // Back to Top
+        let mybutton = document.getElementById("backToTop");
+        window.onscroll = function() {scrollFunction()};
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+        function scrollToTop() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
         // --- 1. OLL Data (1-57) ---
-        // 已將所有圖片設定為讀取 .jpg，並且 OLL 26 更新為您的公式
+        // 使用 .jpg 圖片，OLL 26 已更新為 R' U' R U' R' U2 R
         const ollData = [
-            { id: 1, alg: "R U2 R2 F R F' U2 R' F R F'" },
-            { id: 2, alg: "r U r' U2 r U2 R' U2 R U' r'" },
-            { id: 3, alg: "f R U R' U' f' U' F R U R' U' F'" },
-            { id: 4, alg: "f R U R' U' f' U F R U R' U' F'" },
-            { id: 5, alg: "l' U2 L U L' U l" },
-            { id: 6, alg: "r U2 R' U' R U' r'" },
-            { id: 7, alg: "r U R' U R U2 r'" },
-            { id: 8, alg: "l' U' L U' L' U2 l" },
-            { id: 9, alg: "R U R' U' R' F R2 U R' U' F'" },
-            { id: 10, alg: "R U R' U R' F R F' R U2 R'" },
-            { id: 11, alg: "r U R' U R' F R F' R U2 r'" },
-            { id: 12, alg: "M' R' U' R U' R' U2 R U' M" },
-            { id: 13, alg: "F U R U' R2 F' R U R U' R'" },
-            { id: 14, alg: "R' U' R U' R' U2 R" },
-            { id: 15, alg: "l' U' l L' U' L U l' U l" },
-            { id: 16, alg: "r U r' R U R' U' r U' r'" },
-            { id: 17, alg: "R U R' U R' F R F' U2 R' F R F'" },
-            { id: 18, alg: "r U R' U R U2 r2 U' R U' R' U2 r" },
-            { id: 19, alg: "M U R U R' U' M' R' F R F'" },
-            { id: 20, alg: "M U R U R' U' M2 U R U' r'" },
-            { id: 21, alg: "R U2 R2 U' R2 U' R2 U2 R" },
-            { id: 22, alg: "R U2 R2 U' R2 U' R2 U2 R" },
-            { id: 23, alg: "R2 D R' U2 R D' R' U2 R'" },
-            { id: 24, alg: "r U R' U' r' F R F'" },
-            { id: 25, alg: "F' r U R' U' r' F R" },
-            { id: 26, alg: "R' U' R U' R' U2 R" }, // Updated
-            { id: 27, alg: "R U R' U R U2 R'" },
-            { id: 28, alg: "r U R' U' r' R U R U' R'" },
-            { id: 29, alg: "R U R' U' R U' R' F' U' F R U R'" },
-            { id: 30, alg: "F R' F R2 U' R' U' R U R' F2" },
-            { id: 31, alg: "R' U' F U R U' R' F' R" },
-            { id: 32, alg: "R U B' U' R' U R B R'" },
-            { id: 33, alg: "R U R' U' R' F R F'" },
-            { id: 34, alg: "R U R2 U' R' F R U R U' F'" },
-            { id: 35, alg: "R U2 R2 F R F' R U2 R'" },
-            { id: 36, alg: "L' U' L U' L' U L U L F' L' F" },
-            { id: 37, alg: "F R U' R' U' R U R' F'" },
-            { id: 38, alg: "R U R' U R U' R' U' R' F R F'" },
-            { id: 39, alg: "L F' L' U' L U F U' L'" },
-            { id: 40, alg: "R' F R U R' U' F' U R" },
-            { id: 41, alg: "R U R' U R U2 R' F R U R' U' F'" },
-            { id: 42, alg: "R' U' R U' R' U2 R F R U R' U' F'" },
-            { id: 43, alg: "f' L' U' L U f" },
-            { id: 44, alg: "f R U R' U' f'" },
-            { id: 45, alg: "F R U R' U' F'" },
-            { id: 46, alg: "R' U' R' F R F' U R" },
-            { id: 47, alg: "F' L' U' L U L' U' L U F" },
-            { id: 48, alg: "F R U R' U' R U R' U' F'" },
-            { id: 49, alg: "r U' r2 U r2 U r2 U' r" },
-            { id: 50, alg: "r' U r2 U' r2 U' r2 U r'" },
-            { id: 51, alg: "f R U R' U' R U R' U' f'" },
-            { id: 52, alg: "R' U' R U' R' U F' U F R" },
-            { id: 53, alg: "r' U' r R' U' R U r' U r" },
-            { id: 54, alg: "r U R' U R U' R' U R U2 r'" },
-            { id: 55, alg: "R' F R U R U' R2 F' R2 U' R' U R U R'" },
-            { id: 56, alg: "r' U r U R U' R' r U' r'" },
-            { id: 57, alg: "R U R' U' M' U R U' r'" }
+            { id: 1, alg: "R U2 R2 F R F' U2 R' F R F'" }, { id: 2, alg: "r U r' U2 r U2 R' U2 R U' r'" }, { id: 3, alg: "f R U R' U' f' U' F R U R' U' F'" }, { id: 4, alg: "f R U R' U' f' U F R U R' U' F'" }, { id: 5, alg: "l' U2 L U L' U l" }, { id: 6, alg: "r U2 R' U' R U' r'" }, { id: 7, alg: "r U R' U R U2 r'" }, { id: 8, alg: "l' U' L U' L' U2 l" }, { id: 9, alg: "R U R' U' R' F R2 U R' U' F'" }, { id: 10, alg: "R U R' U R' F R F' R U2 R'" }, { id: 11, alg: "r U R' U R' F R F' R U2 r'" }, { id: 12, alg: "M' R' U' R U' R' U2 R U' M" }, { id: 13, alg: "F U R U' R2 F' R U R U' R'" }, { id: 14, alg: "R' U' R U' R' U2 R" }, { id: 15, alg: "l' U' l L' U' L U l' U l" }, { id: 16, alg: "r U r' R U R' U' r U' r'" }, { id: 17, alg: "R U R' U R' F R F' U2 R' F R F'" }, { id: 18, alg: "r U R' U R U2 r2 U' R U' R' U2 r" }, { id: 19, alg: "M U R U R' U' M' R' F R F'" }, { id: 20, alg: "M U R U R' U' M2 U R U' r'" }, { id: 21, alg: "R U2 R2 U' R2 U' R2 U2 R" }, { id: 22, alg: "R U2 R2 U' R2 U' R2 U2 R" }, { id: 23, alg: "R2 D R' U2 R D' R' U2 R'" }, { id: 24, alg: "r U R' U' r' F R F'" }, { id: 25, alg: "F' r U R' U' r' F R" }, 
+            { id: 26, alg: "R' U' R U' R' U2 R" }, // Modified for OH
+            { id: 27, alg: "R U R' U R U2 R'" }, { id: 28, alg: "r U R' U' r' R U R U' R'" }, { id: 29, alg: "R U R' U' R U' R' F' U' F R U R'" }, { id: 30, alg: "F R' F R2 U' R' U' R U R' F2" }, { id: 31, alg: "R' U' F U R U' R' F' R" }, { id: 32, alg: "R U B' U' R' U R B R'" }, { id: 33, alg: "R U R' U' R' F R F'" }, { id: 34, alg: "R U R2 U' R' F R U R U' F'" }, { id: 35, alg: "R U2 R2 F R F' R U2 R'" }, { id: 36, alg: "L' U' L U' L' U L U L F' L' F" }, { id: 37, alg: "F R U' R' U' R U R' F'" }, { id: 38, alg: "R U R' U R U' R' U' R' F R F'" }, { id: 39, alg: "L F' L' U' L U F U' L'" }, { id: 40, alg: "R' F R U R' U' F' U R" }, { id: 41, alg: "R U R' U R U2 R' F R U R' U' F'" }, { id: 42, alg: "R' U' R U' R' U2 R F R U R' U' F'" }, { id: 43, alg: "f' L' U' L U f" }, { id: 44, alg: "f R U R' U' f'" }, { id: 45, alg: "F R U R' U' F'" }, { id: 46, alg: "R' U' R' F R F' U R" }, { id: 47, alg: "F' L' U' L U L' U' L U F" }, { id: 48, alg: "F R U R' U' R U R' U' F'" }, { id: 49, alg: "r U' r2 U r2 U r2 U' r" }, { id: 50, alg: "r' U r2 U' r2 U' r2 U r'" }, { id: 51, alg: "f R U R' U' R U R' U' f'" }, { id: 52, alg: "R' U' R U' R' U F' U F R" }, { id: 53, alg: "r' U' r R' U' R U r' U r" }, { id: 54, alg: "r U R' U R U' R' U R U2 r'" }, { id: 55, alg: "R' F R U R U' R2 F' R2 U' R' U R U R'" }, { id: 56, alg: "r' U r U R U' R' r U' r'" }, { id: 57, alg: "R U R' U' M' U R U' r'" }
         ];
 
-        // --- 2. PLL Data (21 Algs) - Images as .jpg ---
+        // --- 2. PLL Data (OH RU-Gen) ---
         const pllData = [
-            { id: "aa", name: "Aa Perm", alg: "x R' U R' D2 R U' R' D2 R2" },
-            { id: "ab", name: "Ab Perm", alg: "x R2 D2 R U R' D2 R U' R" },
-            { id: "f", name: "F Perm", alg: "R' U' F' R U R' U' R' F R2 U' R' U' R U R' U R" },
-            { id: "ga", name: "Ga Perm", alg: "R2 U R' U R' U' R U' R2 U' D R' U R D'" },
-            { id: "gb", name: "Gb Perm", alg: "R' U' R U D' R2 U R' U R U' R U' R2 D" },
-            { id: "gc", name: "Gc Perm", alg: "R2 U' R U' R U R' U R2 U D' R U' R' D" },
-            { id: "gd", name: "Gd Perm", alg: "R U R' U' D R2 U' R U' R' U R' U R2 D'" },
-            { id: "ja", name: "Ja Perm", alg: "R' U L' U2 R U' R' U2 R L" },
-            { id: "jb", name: "Jb Perm", alg: "R U R' F' R U R' U' R' F R2 U' R'" },
-            { id: "ra", name: "Ra Perm", alg: "R U' R' U' R U R D R' U' R D' R' U2 R'" },
-            { id: "rb", name: "Rb Perm", alg: "R2 F R U R U' R' F' R U2 R' U2 R" },
-            { id: "t", name: "T Perm", alg: "R U R' U' R' F R2 U' R' U' R U R' F'" },
-            { id: "e", name: "E Perm", alg: "x' R U' R' D R U R' D' R U R' D R U' R' D'" },
-            { id: "na", name: "Na Perm", alg: "R U R' U R U R' F' R U R' U' R' F R2 U' R' U2 R U' R'" },
-            { id: "nb", name: "Nb Perm", alg: "R' U R U' R' F' U' F R U R' F R' F' R U' R" },
-            { id: "v", name: "V Perm", alg: "R' U R' U' R D' R' D R' U D' R2 U' R2 D R2" },
-            { id: "y", name: "Y Perm", alg: "F R U' R' U' R U R' F' R U R' U' R' F R F'" },
-            // OH-Specific RU-Gen Algs for H, Z, U
-            { id: "h", name: "H Perm (RU)", alg: "R2 U2 R U2 R2 U2 R2 U2 R U2 R2" },
-            { id: "ua", name: "Ua Perm (RU)", alg: "R U' R U R U R U' R' U' R2" },
-            { id: "ub", name: "Ub Perm (RU)", alg: "R2 U R U R' U' R' U' R' U R'" },
-            { id: "z", name: "Z Perm (RU)", alg: "R' U' R2 U R U R' U' R U R U' R U' R" }
+            { id: "aa", name: "Aa Perm", alg: "x R' U R' D2 R U' R' D2 R2" }, { id: "ab", name: "Ab Perm", alg: "x R2 D2 R U R' D2 R U' R" }, { id: "f", name: "F Perm", alg: "R' U' F' R U R' U' R' F R2 U' R' U' R U R' U R" }, { id: "ga", name: "Ga Perm", alg: "R2 U R' U R' U' R U' R2 U' D R' U R D'" }, { id: "gb", name: "Gb Perm", alg: "R' U' R U D' R2 U R' U R U' R U' R2 D" }, { id: "gc", name: "Gc Perm", alg: "R2 U' R U' R U R' U R2 U D' R U' R' D" }, { id: "gd", name: "Gd Perm", alg: "R U R' U' D R2 U' R U' R' U R' U R2 D'" }, { id: "ja", name: "Ja Perm", alg: "R' U L' U2 R U' R' U2 R L" }, { id: "jb", name: "Jb Perm", alg: "R U R' F' R U R' U' R' F R2 U' R'" }, { id: "ra", name: "Ra Perm", alg: "R U' R' U' R U R D R' U' R D' R' U2 R'" }, { id: "rb", name: "Rb Perm", alg: "R2 F R U R U' R' F' R U2 R' U2 R" }, { id: "t", name: "T Perm", alg: "R U R' U' R' F R2 U' R' U' R U R' F'" }, { id: "e", name: "E Perm", alg: "x' R U' R' D R U R' D' R U R' D R U' R' D'" }, { id: "na", name: "Na Perm", alg: "R U R' U R U R' F' R U R' U' R' F R2 U' R' U2 R U' R'" }, { id: "nb", name: "Nb Perm", alg: "R' U R U' R' F' U' F R U R' F R' F' R U' R" }, { id: "v", name: "V Perm", alg: "R' U R' U' R D' R' D R' U D' R2 U' R2 D R2" }, { id: "y", name: "Y Perm", alg: "F R U' R' U' R U R' F' R U R' U' R' F R F'" },
+            // RU-Gen
+            { id: "h", name: "H Perm (RU)", alg: "R2 U2 R U2 R2 U2 R2 U2 R U2 R2" }, { id: "ua", name: "Ua Perm (RU)", alg: "R U' R U R U R U' R' U' R2" }, { id: "ub", name: "Ub Perm (RU)", alg: "R2 U R U R' U' R' U' R' U R'" }, { id: "z", name: "Z Perm (RU)", alg: "R' U' R2 U R U R' U' R U R U' R U' R" }
         ];
 
-        // --- Render OLL (Fixed: .jpg) ---
+        // Render OLL
         const ollContainer = document.getElementById('oll-container');
         ollData.forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'oll-card';
-            const imgSrc = `oll${item.id}.jpg`; 
-            card.innerHTML = `
-                <h4>OLL ${item.id}</h4>
-                <img src="${imgSrc}" alt="OLL ${item.id}" onerror="this.src='https://via.placeholder.com/70?text=IMG'">
-                <p>${item.alg}</p>
-            `;
+            const card = document.createElement('div'); card.className = 'oll-card';
+            const imgSrc = `oll${item.id}.jpg`;
+            card.innerHTML = `<h4>OLL ${item.id}</h4><img src="${imgSrc}" alt="OLL" onerror="this.src='https://via.placeholder.com/70?text=IMG'"><p>${item.alg}</p>`;
             ollContainer.appendChild(card);
         });
 
-        // --- Render PLL (Fixed: .jpg) ---
+        // Render PLL
         const pllContainer = document.getElementById('pll-container');
         pllData.forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'oll-card'; 
-            const imgSrc = `pll_${item.id}.jpg`; 
-            card.innerHTML = `
-                <h4>${item.name}</h4>
-                <img src="${imgSrc}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/70?text=IMG'">
-                <p>${item.alg}</p>
-            `;
+            const card = document.createElement('div'); card.className = 'oll-card';
+            const imgSrc = `pll_${item.id}.jpg`;
+            card.innerHTML = `<h4>${item.name}</h4><img src="${imgSrc}" alt="PLL" onerror="this.src='https://via.placeholder.com/70?text=IMG'"><p>${item.alg}</p>`;
             pllContainer.appendChild(card);
         });
     </script>

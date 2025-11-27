@@ -5,7 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Charles Lin - Speedcuber Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        #backToTop {
+            display: none; position: fixed; bottom: 30px; right: 30px; z-index: 9999;
+            border: none; outline: none; background-color: #0a192f; color: white;
+            cursor: pointer; padding: 0; border-radius: 50%; width: 50px; height: 50px;
+            font-size: 18px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: all 0.3s ease;
+        }
+        #backToTop:hover {
+            background-color: #FFC107; color: #0a192f; transform: translateY(-5px);
+        }
+        
+        /* 練習成績的特殊樣式 */
+        .practice-stats {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        .practice-stats div {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 2px;
+        }
+        .practice-stats strong {
+            color: #0a192f;
+        }
+    </style>
 </head>
 <body>
     <header class="hero-header">
@@ -36,18 +66,26 @@
                 </div>
                 <div class="intro-card">
                     <p>I am Charles Lin, an enthusiastic speedcuber with a particular focus on **3x3x3 One-Handed**. My goal is to continually push my limits and improve my performance across various WCA events.</p>
-                    <p class="wca-id"><strong>WCA ID:</strong> <span class="highlight-text">2020LINC05</span></p>
+                    
+                    <p class="wca-id">
+                        <strong>WCA ID:</strong> 
+                        <a href="https://www.worldcubeassociation.org/persons/2020LINC05" target="_blank" class="wca-link">
+                            <span class="highlight-text">2020LINC05</span>
+                        </a>
+                    </p>
                 </div>
             </div>
         </section>
 
         <section class="section-gray pr-section">
             <div class="container">
-                 <div class="section-header text-center">
-                    <h2>Personal Records (PRs)</h2>
+                
+                <div class="section-header text-center">
+                    <h2>🏆 Official WCA Records</h2>
                     <div class="divider"></div>
                 </div>
-                <div class="records-grid">
+                <div class="records-grid" style="margin-bottom: 50px;">
+                    
                     <div class="record-card specialty">
                         <h3>3x3 One-Handed <span class="badge">Focus</span></h3>
                         <div class="stats">
@@ -55,41 +93,117 @@
                             <div>Average: <strong>15.43s</strong></div>
                         </div>
                     </div>
-                    <div class="record-card">
+
+                    <div class="record-card" style="border-top: 4px solid #007BFF;">
                         <h3>3x3x3 Cube</h3>
                          <div class="stats">
                             <div>Single: <strong>8.57s</strong></div>
                             <div>Average: <strong>10.02s</strong></div>
                         </div>
                     </div>
-                    <div class="record-card">
+
+                    <div class="record-card" style="border-top: 4px solid #007BFF;">
+                        <h3>2x2x2 Cube</h3>
+                         <div class="stats">
+                            <div>Single: <strong>4.93s</strong></div>
+                            <div>Average: <strong>5.96s</strong></div>
+                        </div>
+                    </div>
+
+                    <div class="record-card" style="border-top: 4px solid #007BFF;">
                         <h3>4x4x4 Cube</h3>
                          <div class="stats">
                             <div>Single: <strong>33.73s</strong></div>
                             <div>Average: <strong>38.72s</strong></div>
                         </div>
                     </div>
-                    <div class="record-card">
+
+                    <div class="record-card" style="border-top: 4px solid #007BFF;">
                         <h3>5x5x5 Cube</h3>
                          <div class="stats">
                             <div>Single: <strong>1:05.07</strong></div>
                             <div>Average: <strong>1:10.68</strong></div>
                         </div>
                     </div>
-                     <div class="record-card">
+
+                     <div class="record-card" style="border-top: 4px solid #007BFF;">
                         <h3>Clock</h3>
                          <div class="stats">
                             <div>Single: <strong>10.68s</strong></div>
                             <div>Average: <strong>14.30s</strong></div>
                         </div>
                     </div>
-                     <div class="record-card">
+
+                    <div class="record-card" style="border-top: 4px solid #007BFF;">
+                        <h3>Pyraminx</h3>
+                         <div class="stats">
+                            <div>Single: <strong>7.69s</strong></div>
+                            <div>Average: <strong>12.36s</strong></div>
+                        </div>
+                    </div>
+
+                    <div class="record-card" style="border-top: 4px solid #007BFF;">
+                        <h3>Skewb</h3>
+                         <div class="stats">
+                            <div>Single: <strong>3.18s</strong></div>
+                            <div>Average: <strong>6.18s</strong></div>
+                        </div>
+                    </div>
+
+                     <div class="record-card" style="border-top: 4px solid #007BFF;">
                         <h3>Square-1</h3>
                          <div class="stats">
                             <div>Single: <strong>21.23s</strong></div>
                             <div>Average: <strong>27.85s</strong></div>
                         </div>
                     </div>
+
+                </div>
+
+                <div class="section-header text-center">
+                    <h2>🏠 Practice Personal Bests</h2>
+                    <div class="divider"></div>
+                    <p style="margin-top:10px; color:#666;">Unofficial records achieved during home practice.</p>
+                </div>
+                
+                <div class="records-grid">
+                    
+                    <div class="record-card" style="border-top: 4px solid #28a745;">
+                        <h3>3x3 One-Handed <span class="badge" style="background:#28a745; color:white;">PB</span></h3>
+                        <div class="practice-stats">
+                            <div><span>Single:</span> <strong>6.75s</strong></div>
+                            <div><span>Ao5:</span> <strong>10.27s</strong></div>
+                            <div><span>Ao12:</span> <strong>11.08s</strong></div>
+                        </div>
+                    </div>
+
+                    <div class="record-card" style="border-top: 4px solid #28a745;">
+                        <h3>3x3x3 Cube <span class="badge" style="background:#28a745; color:white;">PB</span></h3>
+                        <div class="practice-stats">
+                            <div><span>Single:</span> <strong>6.06s</strong></div>
+                            <div><span>Ao5:</span> <strong>7.59s</strong></div>
+                            <div><span>Ao12:</span> <strong>8.41s</strong></div>
+                        </div>
+                    </div>
+
+                    <div class="record-card" style="border-top: 4px solid #28a745;">
+                        <h3>4x4x4 Cube <span class="badge" style="background:#28a745; color:white;">PB</span></h3>
+                        <div class="practice-stats">
+                            <div><span>Single:</span> <strong>25.04s</strong></div>
+                            <div><span>Ao5:</span> <strong>29.07s</strong></div>
+                            <div><span>Ao12:</span> <strong>30.71s</strong></div>
+                        </div>
+                    </div>
+
+                    <div class="record-card" style="border-top: 4px solid #28a745;">
+                        <h3>5x5x5 Cube <span class="badge" style="background:#28a745; color:white;">PB</span></h3>
+                        <div class="practice-stats">
+                            <div><span>Single:</span> <strong>58.21s</strong></div>
+                            <div><span>Ao5:</span> <strong>1:02.41</strong></div>
+                            <div><span>Ao12:</span> <strong>1:04.82</strong></div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -124,6 +238,7 @@
                         <ul>
                             <li><strong>4x4x4 (Taoyuan Open 2022):</strong> Single 33.73s</li>
                             <li><strong>Square-1 (Taoyuan Open 2022):</strong> Single 21.23s</li>
+                            <li><strong>Clock (Taiwan Champ 2022):</strong> Single 10.68s</li>
                         </ul>
                     </div>
                 </div>
@@ -135,7 +250,44 @@
     <footer>
         <div class="container">
             <p>© 2025 Charles Lin. WCA ID: 2020LINC05</p>
+            <div class="social-links">
+                <a href="https://www.worldcubeassociation.org/persons/2020LINC05" target="_blank" style="font-size: 1.5rem;" title="WCA Profile">
+                    <i class="fas fa-cube"></i>
+                </a>
+                <a href="https://www.instagram.com/chihjialin?igsh=MW5iZmM4bWJsZXJhZw%3D%3D&utm_source=qr" target="_blank" style="font-size: 1.5rem;" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://github.com/CharlesOuO" target="_blank" style="font-size: 1.5rem;" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:linchihjia@gmail.com" style="font-size: 1.5rem;" title="Email Me">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
         </div>
     </footer>
+
+    <button id="backToTop" onclick="scrollToTop()" title="Go to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        let mybutton = document.getElementById("backToTop");
+
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            // 只要捲動超過 20px，按鈕就會顯示
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    </script>
 </body>
 </html>

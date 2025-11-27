@@ -5,29 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LBL Method - Charles Lin</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* --- 標準 OLL/PLL 小卡片樣式 --- */
+        /* --- OLL/LBL 卡片樣式 --- */
         .oll-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
             gap: 15px;
             margin-top: 20px;
         }
 
-        /* --- ✅ 修改：大型步驟分解網格 (變得更緊湊) --- */
+        /* LBL 大型步驟網格 */
         .big-step-grid {
             display: grid;
-            /* 寬度改小到 200px，更容易擠在同一排 */
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px; /* 間距縮小 */
+            gap: 15px;
             margin-top: 20px;
             justify-content: center;
         }
 
+        /* 寬版卡片 (給第二層分解圖用) */
+        .oll-card.wide-card {
+            grid-column: span 2;
+        }
+        @media (max-width: 600px) {
+            .oll-card.wide-card { grid-column: span 1; }
+        }
+
         .oll-card {
             background: white;
-            padding: 10px; /* 內距縮小 */
+            padding: 10px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             text-align: center;
@@ -47,23 +55,22 @@
         .oll-card h4 {
             margin: 0 0 8px 0;
             color: #555;
-            font-size: 0.9rem; /* 字體微調 */
-            font-weight: 700;
+            font-size: 0.9rem;
         }
 
-        /* ✅ 修改：辨識圖縮小 */
+        /* 單張辨識大圖樣式 */
         .oll-card img.recognition-img {
             width: 70px;  
             height: 70px;
             object-fit: contain;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             border-radius: 4px;
         }
 
-        /* ✅ 修改：一般大圖縮小 */
+        /* 一般單張大圖 */
         .oll-card img.main-img {
-            width: 80px;  
-            height: 80px;
+            width: 90px;  
+            height: 90px;
             object-fit: contain;
             margin-bottom: 5px;
         }
@@ -72,17 +79,17 @@
             font-size: 0.8rem;
             color: #007BFF;
             font-weight: 700;
-            margin: 8px 0 0 0;
-            line-height: 1.3;
+            margin: 5px 0 0 0;
+            line-height: 1.4;
             word-wrap: break-word;
             background: white;
         }
 
-        /* --- 四步分解圖樣式 (Grid) --- */
+        /* --- 分解圖樣式 (Grid) --- */
         .step-breakdown {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 3px; /* 間距縮小 */
+            gap: 5px;
             margin-bottom: 5px;
             border-top: 1px solid #eee;
             padding-top: 10px;
@@ -91,16 +98,15 @@
         /* 第一層角塊維持 2x2 排列 */
         .step-breakdown.two-by-two {
             grid-template-columns: 1fr 1fr;
-            gap: 5px;
         }
         
         .step-img-wrapper { position: relative; }
         .step-img-wrapper img { width: 100%; border-radius: 4px; border: 1px solid #eee; display: block; }
 
-        /* --- 數字標籤樣式 --- */
+        /* --- 數字標籤樣式 (無底色、黑字) --- */
         .step-badge {
             position: absolute;
-            top: 1px; 
+            top: 2px; 
             left: 3px;
             background-color: transparent;
             color: #000000; 
@@ -115,13 +121,22 @@
         .rotation-indicator {
             background-color: #fff3cd;
             color: #856404;
-            font-size: 0.7rem;
-            padding: 4px;
+            font-size: 0.75rem;
+            padding: 5px;
             border-radius: 4px;
-            margin: 8px 0;
+            margin: 10px 0;
             font-weight: bold;
             border: 1px dashed #ffeeba;
         }
+        
+        /* 強制按鈕樣式 */
+        #backToTop {
+            display: none; position: fixed; bottom: 30px; right: 30px; z-index: 9999;
+            border: none; outline: none; background-color: #0a192f; color: white;
+            cursor: pointer; padding: 0; border-radius: 50%; width: 50px; height: 50px;
+            font-size: 18px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: all 0.3s ease;
+        }
+        #backToTop:hover { background-color: #FFC107; color: #0a192f; transform: translateY(-5px); }
     </style>
 </head>
 <body>
@@ -191,7 +206,7 @@
                             
                             <div class="big-step-grid">
                                 <div class="oll-card">
-                                    <h4>Right</h4>
+                                    <h4>White Corner on the Right</h4>
                                     <img src="fl_case1.jpg" class="recognition-img" alt="Recog">
                                     <div class="step-breakdown two-by-two">
                                         <div class="step-img-wrapper"><div class="step-badge">1</div><img src="fl_case1-1.jpg"></div>
@@ -202,7 +217,7 @@
                                     <p>U R U' R'</p>
                                 </div>
                                 <div class="oll-card">
-                                    <h4>Left</h4>
+                                    <h4>White Corner on the Left</h4>
                                     <img src="fl_case2.jpg" class="recognition-img" alt="Recog">
                                     <div class="step-breakdown two-by-two">
                                         <div class="step-img-wrapper"><div class="step-badge">1</div><img src="fl_case2-1.jpg"></div>
@@ -213,7 +228,7 @@
                                     <p>U' L' U L</p>
                                 </div>
                                 <div class="oll-card">
-                                    <h4>Up</h4>
+                                    <h4>Facing Up</h4>
                                     <img src="fl_case3.jpg" class="recognition-img" alt="Recog">
                                     <div class="step-breakdown two-by-two">
                                         <div class="step-img-wrapper"><div class="step-badge">1</div><img src="fl_case3-1.jpg"></div>
@@ -235,9 +250,9 @@
                             
                             <div class="big-step-grid">
                                 
-                                <div class="oll-card">
+                                <div class="oll-card wide-card">
                                     <h4>Target: Right</h4>
-                                    <img src="l2_right.jpg" class="recognition-img" alt="Move Right">
+                                    <img src="l2_right.jpg" class="recognition-img" alt="Move Right" style="display:block; margin: 0 auto 10px auto;">
                                     
                                     <p style="text-align:center; font-size:0.8rem; color:#666;">Part 1: Pair up</p>
                                     <div class="step-breakdown">
@@ -247,8 +262,11 @@
                                         <div class="step-img-wrapper"><div class="step-badge">4</div><img src="l2_right4.jpg"></div>
                                     </div>
                                     
-                                    <div class="rotation-indicator">↻ Rotate Right (y)</div>
-                                    
+                                    <div class="rotation-indicator">
+                                        ↻ Rotate Cube Right (y)<br>
+                                        <span style="font-weight:normal; font-size:0.7em;">(Turn the whole cube so the Right face becomes Front)</span>
+                                    </div>
+
                                     <p style="text-align:center; font-size:0.8rem; color:#666;">Part 2: Insert</p>
                                     <div class="step-breakdown">
                                         <div class="step-img-wrapper"><div class="step-badge">5</div><img src="l2_right5.jpg"></div>
@@ -259,9 +277,9 @@
                                     <p>U R U' R' <span style="color:#333;">(y)</span> U' L' U L</p>
                                 </div>
 
-                                <div class="oll-card">
+                                <div class="oll-card wide-card">
                                     <h4>Target: Left</h4>
-                                    <img src="l2_left.jpg" class="recognition-img" alt="Move Left">
+                                    <img src="l2_left.jpg" class="recognition-img" alt="Move Left" style="display:block; margin: 0 auto 10px auto;">
                                     
                                     <p style="text-align:center; font-size:0.8rem; color:#666;">Part 1: Pair up</p>
                                     <div class="step-breakdown">
@@ -271,8 +289,11 @@
                                         <div class="step-img-wrapper"><div class="step-badge">4</div><img src="l2_left4.jpg"></div>
                                     </div>
                                     
-                                    <div class="rotation-indicator">↺ Rotate Left (y')</div>
-                                    
+                                    <div class="rotation-indicator">
+                                        ↺ Rotate Cube Left (y')<br>
+                                        <span style="font-weight:normal; font-size:0.7em;">(Turn the whole cube so the Left face becomes Front)</span>
+                                    </div>
+
                                     <p style="text-align:center; font-size:0.8rem; color:#666;">Part 2: Insert</p>
                                     <div class="step-breakdown">
                                         <div class="step-img-wrapper"><div class="step-badge">5</div><img src="l2_left5.jpg"></div>
@@ -379,7 +400,43 @@
     <footer>
         <div class="container">
             <p>© 2025 Charles Lin. WCA ID: 2020LINC05</p>
+            <div class="social-links">
+                <a href="https://www.worldcubeassociation.org/persons/2020LINC05" target="_blank" style="font-size: 1.5rem;" title="WCA Profile">
+                    <i class="fas fa-cube"></i>
+                </a>
+                <a href="https://www.instagram.com/chihjialin?igsh=MW5iZmM4bWJsZXJhZw%3D%3D&utm_source=qr" target="_blank" style="font-size: 1.5rem;" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://github.com/CharlesOuO" target="_blank" style="font-size: 1.5rem;" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:linchihjia@gmail.com" style="font-size: 1.5rem;" title="Email Me">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
         </div>
     </footer>
+
+    <button id="backToTop" onclick="scrollToTop()" title="Go to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        let mybutton = document.getElementById("backToTop");
+
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    </script>
 </body>
 </html>

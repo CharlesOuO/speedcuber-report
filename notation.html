@@ -5,7 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cube Notation - Charles Lin</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        /* 針對 Notation 頁面微調圖片大小 */
+        .record-card img {
+            width: 100%;
+            max-width: 150px;
+            height: auto;
+            display: block;
+            margin: 15px auto;
+        }
+    </style>
 </head>
 <body>
     <header class="hero-header">
@@ -54,32 +66,32 @@
                     <div class="record-card">
                         <h3>R (Right)</h3>
                         <p>Turn the <strong>Right</strong> face clockwise (Upwards).</p>
-                        <img src="R.jpg" alt="R Move" style="width: 100%; max-width: 200px; display: block; margin: 15px auto;">
+                        <img src="R.jpg" alt="R Move">
                     </div>
                     <div class="record-card">
                         <h3>L (Left)</h3>
                         <p>Turn the <strong>Left</strong> face clockwise (Downwards).</p>
-                        <img src="L.jpg" alt="L Move" style="width: 100%; max-width: 200px; display: block; margin: 15px auto;">
+                        <img src="L.jpg" alt="L Move">
                     </div>
                     <div class="record-card">
                         <h3>U (Up)</h3>
                         <p>Turn the <strong>Top</strong> face clockwise (To the Left).</p>
-                        <img src="U.jpg" alt="U Move" style="width: 100%; max-width: 200px; display: block; margin: 15px auto;">
+                        <img src="U.jpg" alt="U Move">
                     </div>
                     <div class="record-card">
                         <h3>D (Down)</h3>
                         <p>Turn the <strong>Bottom</strong> face clockwise (To the Right).</p>
-                        <img src="D.jpg" alt="D Move" style="width: 100%; max-width: 200px; display: block; margin: 15px auto;">
+                        <img src="D.jpg" alt="D Move">
                     </div>
                     <div class="record-card">
                         <h3>F (Front)</h3>
                         <p>Turn the <strong>Front</strong> face clockwise.</p>
-                        <img src="F.jpg" alt="F Move" style="width: 100%; max-width: 200px; display: block; margin: 15px auto;">
+                        <img src="F.jpg" alt="F Move">
                     </div>
                     <div class="record-card">
                         <h3>B (Back)</h3>
                         <p>Turn the <strong>Back</strong> face clockwise.</p>
-                        <img src="B.jpg" alt="B Move" style="width: 100%; max-width: 200px; display: block; margin: 15px auto;">
+                        <img src="B.jpg" alt="B Move">
                     </div>
                 </div>
             </div>
@@ -117,7 +129,43 @@
     <footer>
         <div class="container">
             <p>© 2025 Charles Lin. WCA ID: 2020LINC05</p>
+            <div class="social-links">
+                <a href="https://www.worldcubeassociation.org/persons/2020LINC05" target="_blank" style="font-size: 1.5rem;" title="WCA Profile">
+                    <i class="fas fa-cube"></i>
+                </a>
+                <a href="https://www.instagram.com/chihjialin?igsh=MW5iZmM4bWJsZXJhZw%3D%3D&utm_source=qr" target="_blank" style="font-size: 1.5rem;" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://github.com/CharlesOuO" target="_blank" style="font-size: 1.5rem;" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:linchihjia@gmail.com" style="font-size: 1.5rem;" title="Email Me">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
         </div>
     </footer>
+
+    <button id="backToTop" onclick="scrollToTop()" title="Go to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        let mybutton = document.getElementById("backToTop");
+
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    </script>
 </body>
 </html>
