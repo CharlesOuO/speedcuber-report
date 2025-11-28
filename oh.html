@@ -7,55 +7,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    
     <style>
-        /* OLL/PLL 專用的緊湊排版 */
-        .oll-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
+        #backToTop {
+            display: none; position: fixed; bottom: 30px; right: 30px; z-index: 9999;
+            border: none; outline: none; background-color: #0a192f; color: white;
+            cursor: pointer; padding: 0; border-radius: 50%; width: 50px; height: 50px;
+            font-size: 18px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: all 0.3s ease;
         }
-
-        .oll-card {
-            background: white;
-            padding: 10px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            text-align: center;
-            border: 1px solid #eee;
-            position: relative;
-            transition: transform 0.2s ease, box-shadow 0.2s ease; 
-        }
-
-        .oll-card:hover {
-            transform: scale(1.1); /* 統一放大倍率 */
-            z-index: 100;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-            cursor: pointer;
-            transition-delay: 0.2s; 
-        }
-
-        .oll-card h4 {
-            margin: 0 0 5px 0;
-            color: #555;
-            font-size: 0.85rem;
-        }
-
-        .oll-card img {
-            width: 80px;  
-            height: 80px;
-            object-fit: contain;
-            margin-bottom: 5px;
-        }
-
-        .oll-card p {
-            font-size: 0.75rem;
-            color: #007BFF;
-            font-weight: 700;
-            margin: 0;
-            line-height: 1.3;
-            word-wrap: break-word;
-            background: white;
+        #backToTop:hover {
+            background-color: #FFC107; color: #0a192f; transform: translateY(-5px);
         }
     </style>
 </head>
@@ -181,28 +142,22 @@
         <div class="container">
             <p>© 2025 Charles Lin. WCA ID: 2020LINC05</p>
             <div class="social-links">
-                <a href="https://www.worldcubeassociation.org/persons/2020LINC05" target="_blank" style="font-size: 1.5rem;" title="WCA Profile">
-                    <i class="fas fa-cube"></i>
-                </a>
-                <a href="https://www.instagram.com/chihjialin?igsh=MW5iZmM4bWJsZXJhZw%3D%3D&utm_source=qr" target="_blank" style="font-size: 1.5rem;" title="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://github.com/CharlesOuO" target="_blank" style="font-size: 1.5rem;" title="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="mailto:linchihjia@gmail.com" style="font-size: 1.5rem;" title="Email Me">
-                    <i class="fas fa-envelope"></i>
-                </a>
+                <a href="https://www.worldcubeassociation.org/persons/2020LINC05" target="_blank" style="font-size: 1.5rem;" title="WCA Profile"><i class="fas fa-cube"></i></a>
+                <a href="https://www.instagram.com/chihjialin?igsh=MW5iZmM4bWJsZXJhZw%3D%3D&utm_source=qr" target="_blank" style="font-size: 1.5rem;" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://github.com/CharlesOuO" target="_blank" style="font-size: 1.5rem;" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="mailto:linchihjia@gmail.com" style="font-size: 1.5rem;" title="Email Me"><i class="fas fa-envelope"></i></a>
             </div>
         </div>
     </footer>
 
-    <button id="backToTop" onclick="scrollToTop()" title="Go to top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+    <button id="backToTop" onclick="scrollToTop()" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+
+    <div id="lightbox">
+        <div id="lightbox-content"></div>
+    </div>
 
     <script>
-        // Back to Top
+        // Back to Top Logic
         let mybutton = document.getElementById("backToTop");
         window.onscroll = function() {scrollFunction()};
         function scrollFunction() {
@@ -212,15 +167,35 @@
                 mybutton.style.display = "none";
             }
         }
-        function scrollToTop() {
-            window.scrollTo({top: 0, behavior: 'smooth'});
+        function scrollToTop() { window.scrollTo({top: 0, behavior: 'smooth'}); }
+
+        // Lightbox Logic
+        const lightbox = document.getElementById('lightbox');
+        const lightboxContent = document.getElementById('lightbox-content');
+
+        function attachLightboxListeners() {
+            // 選取 OLL 和 PLL 卡片
+            const cards = document.querySelectorAll('.oll-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    lightbox.style.display = 'flex';
+                    lightboxContent.style.display = 'flex';
+                    // 複製內容到燈箱
+                    lightboxContent.innerHTML = card.innerHTML;
+                });
+            });
         }
 
+        lightbox.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+        });
+
         // --- 1. OLL Data (1-57) ---
-        // 使用 .jpg 圖片，OLL 26 已更新為 R' U' R U' R' U2 R
         const ollData = [
             { id: 1, alg: "R U2 R2 F R F' U2 R' F R F'" }, { id: 2, alg: "r U r' U2 r U2 R' U2 R U' r'" }, { id: 3, alg: "f R U R' U' f' U' F R U R' U' F'" }, { id: 4, alg: "f R U R' U' f' U F R U R' U' F'" }, { id: 5, alg: "l' U2 L U L' U l" }, { id: 6, alg: "r U2 R' U' R U' r'" }, { id: 7, alg: "r U R' U R U2 r'" }, { id: 8, alg: "l' U' L U' L' U2 l" }, { id: 9, alg: "R U R' U' R' F R2 U R' U' F'" }, { id: 10, alg: "R U R' U R' F R F' R U2 R'" }, { id: 11, alg: "r U R' U R' F R F' R U2 r'" }, { id: 12, alg: "M' R' U' R U' R' U2 R U' M" }, { id: 13, alg: "F U R U' R2 F' R U R U' R'" }, { id: 14, alg: "R' U' R U' R' U2 R" }, { id: 15, alg: "l' U' l L' U' L U l' U l" }, { id: 16, alg: "r U r' R U R' U' r U' r'" }, { id: 17, alg: "R U R' U R' F R F' U2 R' F R F'" }, { id: 18, alg: "r U R' U R U2 r2 U' R U' R' U2 r" }, { id: 19, alg: "M U R U R' U' M' R' F R F'" }, { id: 20, alg: "M U R U R' U' M2 U R U' r'" }, { id: 21, alg: "R U2 R2 U' R2 U' R2 U2 R" }, { id: 22, alg: "R U2 R2 U' R2 U' R2 U2 R" }, { id: 23, alg: "R2 D R' U2 R D' R' U2 R'" }, { id: 24, alg: "r U R' U' r' F R F'" }, { id: 25, alg: "F' r U R' U' r' F R" }, 
-            { id: 26, alg: "R' U' R U' R' U2 R" }, // Modified for OH
+            { id: 26, alg: "R' U' R U' R' U2 R" }, // Custom OH Alg
             { id: 27, alg: "R U R' U R U2 R'" }, { id: 28, alg: "r U R' U' r' R U R U' R'" }, { id: 29, alg: "R U R' U' R U' R' F' U' F R U R'" }, { id: 30, alg: "F R' F R2 U' R' U' R U R' F2" }, { id: 31, alg: "R' U' F U R U' R' F' R" }, { id: 32, alg: "R U B' U' R' U R B R'" }, { id: 33, alg: "R U R' U' R' F R F'" }, { id: 34, alg: "R U R2 U' R' F R U R U' F'" }, { id: 35, alg: "R U2 R2 F R F' R U2 R'" }, { id: 36, alg: "L' U' L U' L' U L U L F' L' F" }, { id: 37, alg: "F R U' R' U' R U R' F'" }, { id: 38, alg: "R U R' U R U' R' U' R' F R F'" }, { id: 39, alg: "L F' L' U' L U F U' L'" }, { id: 40, alg: "R' F R U R' U' F' U R" }, { id: 41, alg: "R U R' U R U2 R' F R U R' U' F'" }, { id: 42, alg: "R' U' R U' R' U2 R F R U R' U' F'" }, { id: 43, alg: "f' L' U' L U f" }, { id: 44, alg: "f R U R' U' f'" }, { id: 45, alg: "F R U R' U' F'" }, { id: 46, alg: "R' U' R' F R F' U R" }, { id: 47, alg: "F' L' U' L U L' U' L U F" }, { id: 48, alg: "F R U R' U' R U R' U' F'" }, { id: 49, alg: "r U' r2 U r2 U r2 U' r" }, { id: 50, alg: "r' U r2 U' r2 U' r2 U r'" }, { id: 51, alg: "f R U R' U' R U R' U' f'" }, { id: 52, alg: "R' U' R U' R' U F' U F R" }, { id: 53, alg: "r' U' r R' U' R U r' U r" }, { id: 54, alg: "r U R' U R U' R' U R U2 r'" }, { id: 55, alg: "R' F R U R U' R2 F' R2 U' R' U R U R'" }, { id: 56, alg: "r' U r U R U' R' r U' r'" }, { id: 57, alg: "R U R' U' M' U R U' r'" }
         ];
 
@@ -235,19 +210,22 @@
         const ollContainer = document.getElementById('oll-container');
         ollData.forEach(item => {
             const card = document.createElement('div'); card.className = 'oll-card';
-            const imgSrc = `oll${item.id}.jpg`;
-            card.innerHTML = `<h4>OLL ${item.id}</h4><img src="${imgSrc}" alt="OLL" onerror="this.src='https://via.placeholder.com/70?text=IMG'"><p>${item.alg}</p>`;
+            const imgSrc = `oll${item.id}.jpg`; 
+            card.innerHTML = `<h4>OLL ${item.id}</h4><img src="${imgSrc}" alt="OLL ${item.id}" onerror="this.src='https://via.placeholder.com/70?text=IMG'"><p>${item.alg}</p>`;
             ollContainer.appendChild(card);
         });
 
         // Render PLL
         const pllContainer = document.getElementById('pll-container');
         pllData.forEach(item => {
-            const card = document.createElement('div'); card.className = 'oll-card';
-            const imgSrc = `pll_${item.id}.jpg`;
+            const card = document.createElement('div'); card.className = 'oll-card'; 
+            const imgSrc = `pll_${item.id}.jpg`; 
             card.innerHTML = `<h4>${item.name}</h4><img src="${imgSrc}" alt="PLL" onerror="this.src='https://via.placeholder.com/70?text=IMG'"><p>${item.alg}</p>`;
             pllContainer.appendChild(card);
         });
+
+        // Attach Listeners
+        attachLightboxListeners();
     </script>
 </body>
 </html>

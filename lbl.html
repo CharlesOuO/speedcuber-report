@@ -7,136 +7,35 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    
     <style>
-        /* --- OLL/LBL 卡片樣式 --- */
-        .oll-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        /* LBL 大型步驟網格 */
-        .big-step-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-            justify-content: center;
-        }
-
-        /* 寬版卡片 (給第二層分解圖用) */
-        .oll-card.wide-card {
-            grid-column: span 2;
-        }
-        @media (max-width: 600px) {
-            .oll-card.wide-card { grid-column: span 1; }
-        }
-
-        .oll-card {
-            background: white;
-            padding: 10px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            text-align: center;
-            border: 1px solid #eee;
-            position: relative;
-            transition: transform 0.2s ease, box-shadow 0.2s ease; 
-        }
-
-        .oll-card:hover {
-            transform: scale(1.02); 
-            z-index: 100;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-            cursor: pointer;
-            transition-delay: 0.2s; 
-        }
-
-        .oll-card h4 {
-            margin: 0 0 8px 0;
-            color: #555;
-            font-size: 0.9rem;
-        }
-
-        /* 單張辨識大圖樣式 */
-        .oll-card img.recognition-img {
-            width: 70px;  
-            height: 70px;
-            object-fit: contain;
-            margin-bottom: 10px;
-            border-radius: 4px;
-        }
-
-        /* 一般單張大圖 */
-        .oll-card img.main-img {
-            width: 90px;  
-            height: 90px;
-            object-fit: contain;
-            margin-bottom: 5px;
-        }
-
-        .oll-card p {
-            font-size: 0.8rem;
-            color: #007BFF;
-            font-weight: 700;
-            margin: 5px 0 0 0;
-            line-height: 1.4;
-            word-wrap: break-word;
-            background: white;
-        }
-
-        /* --- 分解圖樣式 (Grid) --- */
-        .step-breakdown {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 5px;
-            margin-bottom: 5px;
-            border-top: 1px solid #eee;
-            padding-top: 10px;
-        }
-        
-        /* 第一層角塊維持 2x2 排列 */
-        .step-breakdown.two-by-two {
-            grid-template-columns: 1fr 1fr;
-        }
-        
-        .step-img-wrapper { position: relative; }
-        .step-img-wrapper img { width: 100%; border-radius: 4px; border: 1px solid #eee; display: block; }
-
-        /* --- 數字標籤樣式 (無底色、黑字) --- */
-        .step-badge {
-            position: absolute;
-            top: 2px; 
-            left: 3px;
-            background-color: transparent;
-            color: #000000; 
-            font-size: 0.55rem; 
-            font-weight: 800;
-            z-index: 5; 
-            pointer-events: none;
-            text-shadow: 0px 0px 2px rgba(255, 255, 255, 0.9); 
-        }
-
-        /* --- 轉面提示樣式 --- */
-        .rotation-indicator {
-            background-color: #fff3cd;
-            color: #856404;
-            font-size: 0.75rem;
-            padding: 5px;
-            border-radius: 4px;
-            margin: 10px 0;
-            font-weight: bold;
-            border: 1px dashed #ffeeba;
-        }
-        
-        /* 強制按鈕樣式 */
+        /* 強制按鈕樣式 (防快取) */
         #backToTop {
             display: none; position: fixed; bottom: 30px; right: 30px; z-index: 9999;
             border: none; outline: none; background-color: #0a192f; color: white;
             cursor: pointer; padding: 0; border-radius: 50%; width: 50px; height: 50px;
             font-size: 18px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: all 0.3s ease;
         }
-        #backToTop:hover { background-color: #FFC107; color: #0a192f; transform: translateY(-5px); }
+        #backToTop:hover {
+            background-color: #FFC107; color: #0a192f; transform: translateY(-5px);
+        }
+
+        /* --- 針對 LBL 頁面的卡片游標設定 --- */
+        /* 1. 預設所有卡片可以點 (OLL, PLL) */
+        .oll-card { cursor: zoom-in; }
+        
+        /* 2. 特別鎖定 Layer 1 和 Layer 2 的卡片，不讓它點 */
+        #step-layer1 .oll-card, 
+        #step-layer2 .oll-card {
+            cursor: default !important; 
+        }
+        /* 確保裡面的圖片也不會變成放大鏡 */
+        #step-layer1 img, #step-layer2 img {
+            cursor: default !important;
+        }
+        
+        /* Cross 圖片可以點 */
+        #step-cross img { cursor: zoom-in; }
     </style>
 </head>
 <body>
@@ -167,7 +66,7 @@
                     <div class="divider"></div>
                 </div>
                 <div class="intro-card">
-                    <p>The **Layer By Layer (LBL)** method is the most popular method for beginners. Click on the icons below to jump to the specific step.</p>
+                    <p>The <strong>Layer By Layer (LBL)</strong> method is the most popular method for beginners. Click on the icons below to jump to the specific step.</p>
                 </div>
 
                 <div class="icon-nav-grid">
@@ -202,7 +101,7 @@
                         <div class="step-number">02</div>
                         <div class="step-content">
                             <h3>First Layer Corners</h3>
-                            <p>Find a white corner in the top layer. Identify which direction the white sticker is facing, then use the corresponding algorithm.</p>
+                            <p>Find a white corner in the top layer. Identify which direction the white sticker is facing.</p>
                             
                             <div class="big-step-grid">
                                 <div class="oll-card">
@@ -246,10 +145,9 @@
                         <div class="step-number">03</div>
                         <div class="step-content">
                             <h3>Second Layer</h3>
-                            <p>Find an edge in the top layer without yellow. Align it to form a "T".</p>
+                            <p>Find an edge in the top layer without yellow. Align it to form a "T" shape.</p>
                             
                             <div class="big-step-grid">
-                                
                                 <div class="oll-card wide-card">
                                     <h4>Target: Right</h4>
                                     <img src="l2_right.jpg" class="recognition-img" alt="Move Right" style="display:block; margin: 0 auto 10px auto;">
@@ -264,7 +162,7 @@
                                     
                                     <div class="rotation-indicator">
                                         ↻ Rotate Cube Right (y)<br>
-                                        <span style="font-weight:normal; font-size:0.7em;">(Turn the whole cube so the Right face becomes Front)</span>
+                                        <span style="font-weight:normal; font-size:0.7em;">(Turn cube so Right face becomes Front)</span>
                                     </div>
 
                                     <p style="text-align:center; font-size:0.8rem; color:#666;">Part 2: Insert</p>
@@ -291,7 +189,7 @@
                                     
                                     <div class="rotation-indicator">
                                         ↺ Rotate Cube Left (y')<br>
-                                        <span style="font-weight:normal; font-size:0.7em;">(Turn the whole cube so the Left face becomes Front)</span>
+                                        <span style="font-weight:normal; font-size:0.7em;">(Turn cube so Left face becomes Front)</span>
                                     </div>
 
                                     <p style="text-align:center; font-size:0.8rem; color:#666;">Part 2: Insert</p>
@@ -303,7 +201,6 @@
                                     </div>
                                     <p>U' L' U L <span style="color:#333;">(y')</span> U R U' R'</p>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -335,13 +232,13 @@
                                 Apply the <strong>Algorithm (R' U' R U' R' U2 R)</strong> repeatedly to solve any corner case.
                             </p>
                             <div class="oll-grid">
-                                <div class="oll-card"><h4>Sune</h4><img src="oll27.jpg" onerror="this.src='https://via.placeholder.com/70'"><p>R' U' R U' R' U2 R</p></div>
-                                <div class="oll-card"><h4>Anti-Sune</h4><img src="oll26.jpg" onerror="this.src='https://via.placeholder.com/70'"><p>R' U' R U' R' U2 R</p></div>
-                                <div class="oll-card"><h4>H</h4><img src="oll21.jpg" onerror="this.src='https://via.placeholder.com/70'"><p>R' U' R U' R' U2 R</p></div>
-                                <div class="oll-card"><h4>Pi</h4><img src="oll22.jpg" onerror="this.src='https://via.placeholder.com/70'"><p>R' U' R U' R' U2 R</p></div>
-                                <div class="oll-card"><h4>Headlights</h4><img src="oll23.jpg" onerror="this.src='https://via.placeholder.com/70'"><p>R' U' R U' R' U2 R</p></div>
-                                <div class="oll-card"><h4>Chameleon</h4><img src="oll24.jpg" onerror="this.src='https://via.placeholder.com/70'"><p>R' U' R U' R' U2 R</p></div>
-                                <div class="oll-card"><h4>Bowtie</h4><img src="oll25.jpg" onerror="this.src='https://via.placeholder.com/70'"><p>R' U' R U' R' U2 R</p></div>
+                                <div class="oll-card"><h4>Sune</h4><img src="oll27.jpg"><p>R' U' R U' R' U2 R</p></div>
+                                <div class="oll-card"><h4>Anti-Sune</h4><img src="oll26.jpg"><p>R' U' R U' R' U2 R</p></div>
+                                <div class="oll-card"><h4>H</h4><img src="oll21.jpg"><p>R' U' R U' R' U2 R</p></div>
+                                <div class="oll-card"><h4>Pi</h4><img src="oll22.jpg"><p>R' U' R U' R' U2 R</p></div>
+                                <div class="oll-card"><h4>Headlights</h4><img src="oll23.jpg"><p>R' U' R U' R' U2 R</p></div>
+                                <div class="oll-card"><h4>Chameleon</h4><img src="oll24.jpg"><p>R' U' R U' R' U2 R</p></div>
+                                <div class="oll-card"><h4>Bowtie</h4><img src="oll25.jpg"><p>R' U' R U' R' U2 R</p></div>
                             </div>
                         </div>
                     </div>
@@ -401,18 +298,10 @@
         <div class="container">
             <p>© 2025 Charles Lin. WCA ID: 2020LINC05</p>
             <div class="social-links">
-                <a href="https://www.worldcubeassociation.org/persons/2020LINC05" target="_blank" style="font-size: 1.5rem;" title="WCA Profile">
-                    <i class="fas fa-cube"></i>
-                </a>
-                <a href="https://www.instagram.com/chihjialin?igsh=MW5iZmM4bWJsZXJhZw%3D%3D&utm_source=qr" target="_blank" style="font-size: 1.5rem;" title="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://github.com/CharlesOuO" target="_blank" style="font-size: 1.5rem;" title="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="mailto:linchihjia@gmail.com" style="font-size: 1.5rem;" title="Email Me">
-                    <i class="fas fa-envelope"></i>
-                </a>
+                <a href="https://www.worldcubeassociation.org/persons/2020LINC05" target="_blank" style="font-size: 1.5rem;" title="WCA Profile"><i class="fas fa-cube"></i></a>
+                <a href="https://www.instagram.com/chihjialin?igsh=MW5iZmM4bWJsZXJhZw%3D%3D&utm_source=qr" target="_blank" style="font-size: 1.5rem;" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://github.com/CharlesOuO" target="_blank" style="font-size: 1.5rem;" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="mailto:linchihjia@gmail.com" style="font-size: 1.5rem;" title="Email Me"><i class="fas fa-envelope"></i></a>
             </div>
         </div>
     </footer>
@@ -421,22 +310,59 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    <div id="lightbox">
+        <img id="lightbox-img" class="single-img-mode" src="" alt="Enlarged View">
+        <div id="lightbox-content"></div>
+    </div>
+
     <script>
+        // Back to Top Logic
         let mybutton = document.getElementById("backToTop");
-
-        window.onscroll = function() {scrollFunction()};
-
-        function scrollFunction() {
+        window.onscroll = function() {
             if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
                 mybutton.style.display = "block";
             } else {
                 mybutton.style.display = "none";
             }
+        };
+        function scrollToTop() { window.scrollTo({top: 0, behavior: 'smooth'}); }
+
+        // Lightbox Logic
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxContent = document.getElementById('lightbox-content');
+
+        // 1. Cross Image (Single Image Mode)
+        const crossImg = document.querySelector('#step-cross img');
+        if(crossImg) {
+            crossImg.addEventListener('click', (e) => {
+                e.stopPropagation();
+                lightbox.style.display = 'flex';
+                lightboxImg.style.display = 'block'; // Show Img
+                lightboxContent.style.display = 'none'; // Hide Content
+                lightboxImg.src = crossImg.src;
+            });
         }
 
-        function scrollToTop() {
-            window.scrollTo({top: 0, behavior: 'smooth'});
-        }
+        // 2. OLL & PLL Cards (Whole Card Content Mode)
+        const activeCards = document.querySelectorAll('#step-oll .oll-card, #step-pll .oll-card');
+        
+        activeCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                e.stopPropagation();
+                lightbox.style.display = 'flex';
+                lightboxImg.style.display = 'none'; // Hide Img
+                lightboxContent.style.display = 'flex'; // Show Content
+                
+                // Copy content
+                lightboxContent.innerHTML = card.innerHTML;
+            });
+        });
+
+        // Close behavior
+        lightbox.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+        });
     </script>
 </body>
 </html>
